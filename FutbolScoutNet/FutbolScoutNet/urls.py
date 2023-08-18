@@ -21,8 +21,9 @@ from sitio import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('inicio/', views.inicio),
+    path('', views.inicio),
     path('publicacion/', views.form_publicacion),
     path("accounts/", include("django.contrib.auth.urls")),
-    path('', TemplateView.as_view(template_name='home.html'), name='home'),
+    path('feed/', views.feed),
+    path('home/', TemplateView.as_view(template_name='home.html'), name='home'),
 ]

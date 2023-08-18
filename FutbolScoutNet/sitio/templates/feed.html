@@ -1,0 +1,5 @@
+<h1>Este es el feed<h1>
+{% for publicacion in lista_publicaciones %}
+    <h3>{{ publicacion.fecha }} {{ publicacion.titulo }}</h3>
+    <p>{{ publicacion.texto }}</p>
+{% endfor %}

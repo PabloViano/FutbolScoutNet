@@ -5,8 +5,9 @@
 {% block content %}
 {% if user.is_authenticated %}
   Hi {{ user.username }}!
+  <p><a href="{% url 'logout' %}">Cerrar sesión</a></p>
 {% else %}
-  <p>No estas logeado!</p>
-  <a href="{% url 'login' %}">Inicia Sesión</a>
+  <p>You are not logged in</p>
+  <a href="{% url 'login' %}">Inicia sesión</a>
 {% endif %}
 {% endblock %}

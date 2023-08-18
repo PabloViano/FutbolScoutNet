@@ -9,3 +9,4 @@ class FormPublicacion(forms.ModelForm):
        widgets = {
            'fecha': forms.DateInput(attrs={'type': 'date'})
        }
+

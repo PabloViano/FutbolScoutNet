@@ -6,3 +6,5 @@ class Publicacion(models.Model):
     texto = models.CharField(max_length=500)
     fecha = models.DateTimeField()
     verificado = models.BooleanField(default=False)
+
+

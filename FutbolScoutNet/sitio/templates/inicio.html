@@ -2,16 +2,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<title>FutbolScoutNet</title>
-	<link rel="stylesheet" type="text/css" href='{% static "css/style.css"%}'>
+    <meta charset="UTF-8">
+    <title>FutbolScoutNet</title>
+    <link rel="stylesheet" type="text/css" href='{% static "css/style.css"%}'>
 </head>
 <body>
+    <div class="header">
+        <div class="header-buttons">
+            <button class="auth-button"><a href="home.html">Iniciar Sesión</a></button>
+            <button class="auth-button"><a href="registro.html">Registrarse</a></button>
+        </div>
+    </div>
     <div class="banner">
-        <h1 class="tittle" data-text="bannerPrincipal"><i class ="fa fa-futbol-o"></i>Bienvenido a FutbolScoutNet.com!</h1>
+        <h1 class="tittle" data-text="bannerPrincipal"><i class="fa fa-futbol-o"></i>Bienvenido a FutbolScoutNet.com!</h1>
+        <button class="news-button"><a href="feed/">Accede a las últimas publicaciones</a></button>
     </div>
     <div class="logo">
-        <img id= "LogoPagina" src='{% static "css/images/logo.png"%}' alt="LogoFSN">
+        <img id="LogoPagina" src='{% static "css/images/logo.png"%}' alt="LogoFSN">
     </div>
 </body>
 </html>
