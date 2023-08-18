@@ -20,5 +20,6 @@ from sitio import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('sitio/', views.inicio),
+    path('inicio/', views.inicio),
+    path('publicacion/', views.form_publicacion)
 ]
