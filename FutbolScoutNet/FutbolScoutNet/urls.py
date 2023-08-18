@@ -16,6 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.views.generic.base import TemplateView
 from sitio import views
 
 urlpatterns = [
@@ -23,4 +24,5 @@ urlpatterns = [
     path('inicio/', views.inicio),
     path('publicacion/', views.form_publicacion),
     path("accounts/", include("django.contrib.auth.urls")),
+    path('', TemplateView.as_view(template_name='home.html'), name='home'),
 ]
