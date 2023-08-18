@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+
+*{
+	margin: 0;
+	padding: 0;
+	font-family: 'Permanent+Marker', sans-serif;
+}
+
+body{
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    background: #222;
+}
+
+p{
+    color: #fff;
+    position: absolute;
+    text-align: center;
+    font-size: 1.5cm;
+    top: 45%;
+    left: 10%;
+}
+
+.banner{
+    position: relative;
+    min-height: 80vh;
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    box-shadow:
+    inset 5px 5px 5px rgba(0,0,0,0.2),
+    inset -5px -5px 15px rgba(255,255,255,0.1),
+    5px 5px 15px rgba(0,0,0,0.3),
+    -5px -5px 15px rgba(255,255,255,0.1);
+}
+
+.banner .tittle{
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    margin: 0;
+    padding: 0 30px;
+    font-size: 3em;
+    color: #fff;
+    text-shadow: 0 0 20px #ff005b;
+}
+
+.banner .tittle:after{
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 0 20px;
+    z-index: -1;
+    color: #ff005b;
+    filter: blur(15px);
+}
+
+.banner .tittle:before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    background: #fe3a80;
+    z-index: -2;
+    opacity: -5;
+    filter: blur(40px);
+}
+
+.from-control{
+    box-sizing: content-box;
+    width: 95%;
+    border: solid #ff1f71 2px;
+    padding: 5px;
+}
