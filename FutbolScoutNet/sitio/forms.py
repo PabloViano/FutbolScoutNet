@@ -10,10 +10,15 @@ class FormPublicacion(forms.ModelForm):
            'fecha': forms.DateInput(attrs={'type': 'date'})
        }
 
+class PasswordField(forms.CharField):
+    widget = forms.PasswordInput
+
 class FormUsuario(forms.ModelForm):
     class Meta:
        model = Usuario
        fields = ['user name', 'email', 'password']
        widgets = {
-           'password': forms.PasswordInput(),
+           'email' : forms.EmailInput(),
+           'password' : forms.PasswordInput()
        }
+       

@@ -26,4 +26,5 @@ urlpatterns = [
     path("accounts/", include("django.contrib.auth.urls")),
     path('feed/', views.feed),
     path('home/', TemplateView.as_view(template_name='home.html'), name='home'),
+    path('registro/', views.form_registro),
 ]

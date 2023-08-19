@@ -9,8 +9,12 @@ class Publicacion(models.Model):
     verificado = models.BooleanField(default=False)
 
 class Usuario(models.Model):
-    user = User.objects.create_user(models.CharField(max_lenght=10)   #Nombre usuario
-                                    ,models.CharField(max_lenght=10)  #email
-                                    ,models.CharField(max_lenght=10)) #contraseña
-    user.save()
-
+    username = models.CharField(max_length=150)  # Asegúrate de definir la longitud máxima
+    email = models.CharField(max_length=254)     # Asegúrate de definir la longitud máxima
+    password = models.CharField(max_length=128)  # Asegúrate de definir la longitud máxima
+    
+    def save(self, *args, **kwargs):
+        if not self.pk:  # Solo crea el usuario si el objeto aún no tiene una clave primaria
+            user = User.objects.create_user(username=self.username, email=self.email, password=self.password)
+            user.save()
+        super().save(*args, **kwargs)
