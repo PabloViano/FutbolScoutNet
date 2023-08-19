@@ -1,12 +1,16 @@
 {% extends 'base.html' %}
-
 {% block title %}Inicio de sesión{% endblock %}
 
 {% block content %}
-<h2>Log In</h2>
-<form method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">Inicia sesión</button>
-</form>
+{% load static %}
+<link rel="stylesheet" type="text/css" href='{% static "css/style_login.css"%}'>
+  <div class="login-container">
+    <h2>Inicia sesión</h2>
+    <form method="post" class="login-form">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Inicia sesión</button>
+    </form>
+  </div>
 {% endblock %}
+
