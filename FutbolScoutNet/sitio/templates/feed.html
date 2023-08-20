@@ -1,5 +1,23 @@
-<h1>Este es el feed<h1>
-{% for publicacion in lista_publicaciones %}
-    <h3>{{ publicacion.fecha }} {{ publicacion.titulo }}</h3>
-    <p>{{ publicacion.texto }}</p>
-{% endfor %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>FutbolScoutNet - Últimas Publicaciones</title>
+    <link rel="stylesheet" type="text/css" href='{% static "css/style_feedpage.css"%}'>
+</head>
+<body>
+    <div class="feed-container">
+        <h1 class="feed-title">Últimas Publicaciones</h1>
+        <div class="feed-posts">
+            {% for publicacion in lista_publicaciones %}
+                <div class="feed-post">
+                    <h3 class="post-title">{{ publicacion.titulo }}</h3>
+                    <p class="post-date">{{ publicacion.fecha }}</p>
+                    <p class="post-text">{{ publicacion.texto }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
