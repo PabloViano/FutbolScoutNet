@@ -1,10 +1,15 @@
-<h1>
-    Registrese!
-</h1>
+{% extends 'base.html' %}
+{% block title %}Registro{% endblock %}
 
-<form method="POST" action=".">
-    {% csrf_token %}
-    {{ form_registro.as_p }}
-
-    <p><input type = "submit" value="Enviar" /> </p>
-</form>
+{% block content %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href='{% static "css/style_register.css"%}'>
+  <div class="register-container">
+    <h2>Regístrese</h2>
+    <form method="post" class="register-form">
+      {% csrf_token %}
+      {{ form_registro.as_p }}
+      <button type="submit">Enviar</button>
+    </form>
+  </div>
+{% endblock %}
