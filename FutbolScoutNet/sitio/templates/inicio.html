@@ -7,12 +7,34 @@
     <link rel="stylesheet" type="text/css" href='{% static "css/style_landingpage.css"%}'>
 </head>
 <body>
-    <div class="header">
-        <div class="header-buttons">
-            <button class="auth-button"><a href="accounts/login/">Iniciar Sesión</a></button>
-            <button class="auth-button"><a href="registro/">Registrarse</a></button>
-        </div>
+    <!-- ... Resto del HTML ... -->
+
+<!-- ... Resto del HTML ... -->
+
+<div class="header">
+    <div class="header-buttons">
+        {% if user.is_authenticated %}
+            <div class="button-container">
+                <button class="auth-button"><a href="#">Bienvenido, {{ user.username }}</a></button>
+                <form method="post" action="{% url 'logout' %}">
+                    {% csrf_token %}
+                    <button type="submit" class="auth-button">Cerrar Sesión</button>
+                </form>
+            </div>
+        {% else %}
+            <div class="button-container">
+                <button class="auth-button"><a href="accounts/login/">Iniciar Sesión</a></button>
+                <button class="auth-button"><a href="registro/">Registrarse</a></button>
+            </div>
+        {% endif %}
     </div>
+</div>
+
+<!-- ... Resto del HTML ... -->
+
+
+<!-- ... Resto del HTML ... -->
+
     <div class="banner">
         <h1 class="tittle" data-text="bannerPrincipal"><i class="fa fa-futbol-o"></i>Bienvenido a FutbolScoutNet.com!</h1>
         <button class="news-button"><a href="feed/">Accede a las últimas publicaciones</a></button>

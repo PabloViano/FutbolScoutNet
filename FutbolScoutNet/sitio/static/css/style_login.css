@@ -20,7 +20,6 @@ form {
     justify-content: center;
     height: 100vh;
     background-color: #222;
-    /* Cambiar el color de fondo del contenedor */
 }
 
 /* Center the login form */
@@ -44,27 +43,15 @@ form {
 
 .login-container h2 {
     font-size: 28px;
-    /* Cambiar el tamaño de fuente del título */
     margin-bottom: 20px;
     color: #fff;
-    /* Cambiar el color del texto del título a blanco */
     background-color: #000;
-    /* Cambiar el color de fondo del título a negro */
     padding: 10px;
     border-radius: 5px;
 }
 
-.login-form input[type="text"],
-.login-form input[type="password"] {
-    margin-bottom: 15px;
-    margin-left: -10px;
-    padding: 8px;
-    width: 100%;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-.login-form button {
+/* Style for the buttons */
+.auth-button {
     background-color: #007bff;
     color: #fff;
     border: none;
@@ -72,8 +59,16 @@ form {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    margin: 5px;
+    /* Add margin to separate the buttons */
 }
 
-.login-form button:hover {
+.auth-button:hover {
     background-color: #0056b3;
+}
+
+/* Style for the buttons container */
+.button-container {
+    display: flex;
+    justify-content: center;
 }
