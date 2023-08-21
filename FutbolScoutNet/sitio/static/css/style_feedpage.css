@@ -21,6 +21,24 @@ body {
 
 .header-buttons button {
     margin-right: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    width: 20px;
+    padding: 15px 30px;
+    /* Aumentar el padding para hacerlo más grande */
+    border-radius: 8px;
+    /* Hacerlo más redondeado */
+    font-size: 1.2em;
+    /* Aumentar el tamaño de fuente */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    /* Agregar una sombra suave */
+}
+
+.header-buttons button:hover {
+    background-color: #0056b3;
 }
 
 .feed-container {
@@ -36,7 +54,7 @@ body {
 
 .feed-title {
     font-size: 2em;
-    color: #222;
+    color: #007bff;
     margin-bottom: 20px;
 }
 
