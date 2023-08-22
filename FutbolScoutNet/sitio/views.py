@@ -2,19 +2,9 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from sitio.forms import FormPublicacion, FormUsuario
 from sitio.models import Publicacion
-from django.contrib.auth.views import LoginView, LogoutView
-from django.shortcuts import redirect
 
 def inicio(request):
     return render(request, 'inicio.html', {})
-
-class CustomLogoutView(LogoutView):
-    def get_next_page(self):
-        return "/"
-
-class CustomLoginView(LoginView):
-    def get_success_url(self):
-        return "/"
 
 def form_registro(request):
     if request.method == "POST":

@@ -19,15 +19,12 @@ from django.urls import path, include
 from django.views.generic.base import TemplateView
 from sitio import views
 from django.urls import path
-from sitio.views import CustomLoginView, CustomLogoutView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.inicio),
     path('publicacion/', views.form_publicacion),
     path("accounts/", include("django.contrib.auth.urls")),
-    path('login/', CustomLoginView.as_view(), name='login'),
-    path('logout/', CustomLogoutView.as_view(), name='logout'),
     path('feed/', views.feed),
     path('home/', TemplateView.as_view(template_name='home.html'), name='home'),
     path('registro/', views.form_registro),
