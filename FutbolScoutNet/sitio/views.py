@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from sitio.forms import FormPublicacion, FormUsuario
-from sitio.models import Publicacion
+from sitio.forms import FormPost, FormUsuario
+from sitio.models import Post
 
 def inicio(request):
     return render(request, 'inicio.html', {})
@@ -18,18 +18,18 @@ def form_registro(request):
     return render(request, 'registro.html', {'form_registro': form })
 
 @login_required
-def form_publicacion(request):
+def form_post(request):
     if request.method == "POST":
-        form = FormPublicacion(request.POST)
+        form = FormPost(request.POST)
         if form.is_valid():
             form.save()
             return redirect("/feed")
     else:
-        form = FormPublicacion()
+        form = FormPost()
 
-    return render(request, 'publicacion.html', {'form_publicacion': form})
+    return render(request, 'post.html', {'form_post': form})
 
 @login_required
 def feed(request):
-    publicaciones = Publicacion.objects.order_by("fecha")
-    return render(request, 'feed.html',{'lista_publicaciones': publicaciones})
+    posts = Post.objects.order_by("fecha")
+    return render(request, 'feed.html',{'lista_post': posts})

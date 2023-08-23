@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 # Create your models here.
-class Publicacion(models.Model):
+class Post(models.Model):
     titulo = models.CharField(max_length=50)
     texto = models.CharField(max_length=500)
     fecha = models.DateTimeField()

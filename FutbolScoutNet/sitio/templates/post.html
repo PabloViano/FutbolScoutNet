@@ -8,7 +8,7 @@
     <h2>Cargue los datos de la publicación</h2>
     <form method="post" class="create-post-form">
       {% csrf_token %}
-      {{ form_publicacion.as_p }}
+      {{ form_post.as_p }}
       <button type="submit">Enviar</button>
     </form>
   </div>

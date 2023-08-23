@@ -15,11 +15,11 @@
             </div>
         </div>
         <div class="feed-posts">
-            {% for publicacion in lista_publicaciones %}
+            {% for post in lista_publicaciones %}
                 <div class="feed-post">
-                    <h3 class="post-title">{{ publicacion.titulo }}</h3>
-                    <p class="post-date">{{ publicacion.fecha }}</p>
-                    <p class="post-text">{{ publicacion.texto }}</p>
+                    <h3 class="post-title">{{ post.titulo }}</h3>
+                    <p class="post-date">{{ post.fecha }}</p>
+                    <p class="post-text">{{ post.texto }}</p>
                 </div>
             {% endfor %}
         </div>

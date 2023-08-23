@@ -24,7 +24,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('home/', views.inicio, name = "home"),
     path('', views.inicio, name = "landing_page"),
-    path('publicacion/', views.form_publicacion),
+    path('publicacion/', views.form_post),
     path("accounts/", include("django.contrib.auth.urls")),
     path('feed/', views.feed),
     path('registro/', views.form_registro),
