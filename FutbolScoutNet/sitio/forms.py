@@ -5,7 +5,7 @@ from sitio.models import Post, Usuario
 class FormPost(forms.ModelForm):
     class Meta:
        model = Post
-       fields = ['titulo', 'texto', 'fecha', 'verificado']
+       fields = ['user','titulo', 'texto', 'fecha', 'verificado']
        widgets = {
            'fecha': forms.DateInput(attrs={'type': 'date'})
        }

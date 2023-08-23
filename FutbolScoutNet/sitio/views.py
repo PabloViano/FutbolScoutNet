@@ -32,4 +32,4 @@ def form_post(request):
 @login_required
 def feed(request):
     posts = Post.objects.order_by("fecha")
-    return render(request, 'feed.html',{'lista_post': posts})
+    return render(request, 'feed.html',{'lista_posts': posts})
