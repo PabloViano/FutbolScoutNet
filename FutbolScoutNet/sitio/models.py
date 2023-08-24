@@ -10,10 +10,10 @@ class Usuario(models.Model):
         if not self.pk:  # Solo crea el usuario si el objeto aún no tiene una clave primaria
             user = User.objects.create_user(username=self.username, email=self.email, password=self.password)
             user.save()
-        super().save(*args, **kwargs)
-# Create your models here.
+
 class Profile(models.Model):
-    user = user = models.ForeignKey(User, on_delete=models.CASCADE,null = True, blank = True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE,null = True, blank = True)
+    image = models.ImageField(default='user.png')
 
 class Post(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='posts',null = True, blank = True)

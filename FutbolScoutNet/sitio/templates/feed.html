@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>FutbolScoutNet - Últimas Publicaciones</title>
-    <link rel="stylesheet" type="text/css" href='{% static "css/style_feedpage.css"%}'>
+    <link rel="stylesheet" type="text/css" href='{% static "css/style_feedpage.css" %}'>
 </head>
 <body>
     <div class="feed-container">
@@ -17,12 +17,18 @@
         <div class="feed-posts">
             {% for post in lista_posts %}
                 <div class="feed-post">
+                    <div class="user-image">
+                        <img src="/media/user.png">
+                    </div>
+                <div class="post-content">
                     <h3 class="post-title">{{ post.titulo }}</h3>
                     <p class="post-date">{{ post.fecha }}</p>
                     <p class="post-text">{{ post.texto }}</p>
+                </div>
                 </div>
             {% endfor %}
         </div>
     </div>
 </body>
 </html>
+

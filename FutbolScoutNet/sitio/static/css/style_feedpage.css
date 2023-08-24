@@ -76,3 +76,34 @@ body {
 .post-text {
     color: #333;
 }
+
+.feed-post {
+    display: flex;
+    /* Cambio a flex para alinear contenido */
+    align-items: flex-start;
+    /* Alineación vertical */
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #f5f5f5;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para la imagen de usuario */
+.user-image {
+    margin-right: 15px;
+    /* Espacio entre la imagen y el contenido */
+}
+
+.user-image img {
+    max-width: 100px;
+    /* Tamaño máximo de la imagen de usuario */
+    border-radius: 50%;
+    /* Para hacerla redonda */
+}
+
+/* Estilos para el contenido de la publicación */
+.post-content {
+    flex: 1;
+    /* Que el contenido ocupe el espacio restante */
+}
