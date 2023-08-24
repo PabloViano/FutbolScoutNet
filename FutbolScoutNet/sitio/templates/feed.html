@@ -18,7 +18,7 @@
             {% for post in lista_posts %}
                 <div class="feed-post">
                     <div class="user-image">
-                        <img src="/media/user.png">
+                        <img src = "{{post.user.profile_set.get.image.url}}">
                     </div>
                 <div class="post-content">
                     <h3 class="post-title">{{ post.titulo }}</h3>
