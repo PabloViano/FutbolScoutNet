@@ -1,5 +1,6 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from sitio.forms import FormPost, FormUsuario
 from sitio.models import Post
 
@@ -19,9 +20,12 @@ def form_registro(request):
 
 @login_required
 def form_post(request):
+    current_user = get_object_or_404(User, pk=request.user.pk)
     if request.method == "POST":
         form = FormPost(request.POST)
         if form.is_valid():
+            post = form.save(commit=False)
+            post.user = current_user
             form.save()
             return redirect("/feed")
     else:
