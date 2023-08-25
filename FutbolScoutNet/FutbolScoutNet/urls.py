@@ -31,6 +31,7 @@ urlpatterns = [
     path('feed/', views.feed),
     path('registro/', views.form_registro),
     path('profile/<str:username>/', views.profile, name='profile'),
+    path('listado-perfiles/', views.listado_perfiles)
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

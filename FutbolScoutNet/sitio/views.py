@@ -2,7 +2,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from sitio.forms import FormPost, FormUsuario
-from sitio.models import Post
+from sitio.models import Post, Profile
+
 
 def inicio(request):
     return render(request, 'inicio.html', {})
@@ -48,3 +49,8 @@ def profile(request, username=None):
         posts = current_user.posts.all()
         user = current_user
     return render(request, 'profile.html', {'user':user})
+
+@login_required
+def listado_perfiles(request):
+    perfiles = Profile.objects.order_by()
+    return render(request, 'listado_perfiles.html', {'lista_perfiles':perfiles})

@@ -1,0 +1,13 @@
+<h1>MA, VOMITE!</h1>
+<div class="lista-perfiles">
+    {% for perfil in lista_perfiles %}
+        <div class="perfil">
+            <div class="user-image">
+                <img src = "{{post.user.profile_set.get.image.url}}">
+            </div>
+        <div class="datos-perfil">
+            <h3 class="perfil-user"> Usuario: <a href= /profile/{{post.user}}>{{perfil.user}}</a></h3>
+        </div>
+        </div>
+    {% endfor %}
+</div>
