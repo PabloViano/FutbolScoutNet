@@ -37,3 +37,14 @@ def form_post(request):
 def feed(request):
     posts = Post.objects.order_by("fecha")
     return render(request, 'feed.html',{'lista_posts': posts})
+
+@login_required
+def profile(request, username=None):
+    current_user = request.user
+    if username and username != current_user.username:
+        user = User.objects.get(username=username)
+        post = user.posts.all()
+    else:
+        posts = current_user.posts.all()
+        user = current_user
+    return render(request, 'profiles.html', {'user':user, 'posts':posts})

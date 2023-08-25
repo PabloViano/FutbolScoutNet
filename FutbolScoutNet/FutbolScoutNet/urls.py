@@ -30,4 +30,5 @@ urlpatterns = [
     path("accounts/", include("django.contrib.auth.urls")),
     path('feed/', views.feed),
     path('registro/', views.form_registro),
+    path('profile/<str:username>/', views.profile, name='profile'),
 ]
