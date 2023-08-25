@@ -1,0 +1,38 @@
+
+body{
+    min-height: 100vh;
+    background: #222;
+}
+.header{
+    text-align: center;
+    height: 300px;
+    padding: 12px;
+    background-image: url("https://www.mikebonnell.com/content/051/MikeBonnell_051_W0800.jpg");
+    padding: 0%;
+    border: 1px solid black; /* Agrega esta línea para el borde negro */
+    border-radius: 10px; /* Agrega esta línea para redondear los bordes */
+}
+.avatar{
+    width: 200px;
+    height: 200px;
+    border-radius: 50px;
+    display: block;
+    margin: 0 auto;
+}
+.user-name{
+    font-size: 18px;
+    margin-top: 14px;
+    color: rgba(255, 255, 255, 0.651)
+}
+.descripcion {
+    margin-top: 20px;
+}
+  
+.posteos {
+    border: 2px solid black;
+    border-radius: 15px;
+    padding: 10px;
+    margin-top: 20px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    color: rgba(255, 255, 255, 0.651);
+}

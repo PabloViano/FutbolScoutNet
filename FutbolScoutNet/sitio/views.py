@@ -47,4 +47,4 @@ def profile(request, username=None):
     else:
         posts = current_user.posts.all()
         user = current_user
-    return render(request, 'profiles.html', {'user':user, 'posts':posts})
+    return render(request, 'profile.html', {'user':user, 'posts':posts})
