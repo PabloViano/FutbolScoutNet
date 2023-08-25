@@ -4,31 +4,34 @@
 	<title>Mi Perfil</title>
 	<link rel="stylesheet" type="text/css" href='{% static "css/style_profile.css"%}'>
 </head>
-	<body>
-		<div class="header">
-			<img class= "avatar"src='https://electronicssoftware.net/wp-content/uploads/user.png'>
-			<h1 class="user-name">{{ user.username }}</h1>
-		</div>
-		<ul>
-			<li>
-				<h3> Nombre</h3>
-			</li>
-			<li>
-				<h3> Posicion </h3>
-			</li>
-			<li>
-				<h3> Nacionalidad </h3>
-			</li>
-		</ul>
-		<div class="descripcion">
-			<h3>Acerca de: </h3>
-			<p>
-				Descripcion del jugador
-			</p>
-		</div>
-		<div class="posteos">
-			<h3>Posts de {{ user.username }}:</h3>
-		</div>
-	</body>
+<body>
+    <div class="background"></div>
+    <div class="container">
+        <div class="header">
+            <img class="avatar" src='https://electronicssoftware.net/wp-content/uploads/user.png'>
+            <h1 class="user-name">{{ user.username }}</h1>
+        </div>
+        <ul>
+            <li>
+                <h3> Nombre</h3>
+            </li>
+            <li>
+                <h3> Posicion </h3>
+            </li>
+            <li>
+                <h3> Nacionalidad </h3>
+            </li>
+        </ul>
+        <div class="descripcion">
+            <h3>Acerca de: </h3>
+            <p>
+                Descripcion del jugador
+            </p>
+        </div>
+        <div class="posteos">
+            <h3>Posts de {{ user.username }}:</h3>
+        </div>
+    </div>
+</body>
 
 {% endblock %}

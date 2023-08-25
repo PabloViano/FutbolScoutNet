@@ -1,8 +1,34 @@
 
-body{
+body {
+    margin: 0;
     min-height: 100vh;
     background: #222;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
+.background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #222; /* Mismo color de fondo que la página */
+    z-index: -1;
+}
+
+.container {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    width: 80%; /* Puedes ajustar este valor según tus necesidades */
+    max-width: 1200px; /* Limitar el ancho máximo del contenido */
+    position: relative;
+    z-index: 1;
+}
+
 .header{
     text-align: center;
     height: 300px;
@@ -34,5 +60,4 @@ body{
     padding: 10px;
     margin-top: 20px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-    color: rgba(255, 255, 255, 0.651);
 }
