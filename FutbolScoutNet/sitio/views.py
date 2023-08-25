@@ -44,11 +44,11 @@ def profile(request, username=None):
     current_user = request.user
     if username and username != current_user.username:
         user = User.objects.get(username=username)
-        post = user.posts.all()
+        posts = user.posts.all()
     else:
         posts = current_user.posts.all()
         user = current_user
-    return render(request, 'profile.html', {'user':user})
+    return render(request, 'profile.html', {'user':user, 'posts':posts})
 
 @login_required
 def listado_perfiles(request):

@@ -30,6 +30,17 @@
         </div>
         <div class="posteos">
             <h3>Posts de {{ user.username }}:</h3>
+            <div class="posteos">
+                {% for post in posts %}
+                    <div class="user-post">
+                    <div class="post-content">
+                        <h3 class="post-title">{{ post.titulo }}</h3>
+                        <p class="post-date">{{ post.fecha }}</p>
+                        <p class="post-text">{{ post.texto }}</p>
+                    </div>
+                    </div>
+                {% endfor %}
+            </div>
         </div>
     </div>
 </body>
