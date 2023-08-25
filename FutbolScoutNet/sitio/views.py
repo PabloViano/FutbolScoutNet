@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from sitio.forms import FormPost, FormUsuario
-from sitio.models import Post, Profile
+from sitio.models import Post, Profile, Usuario
 
 
 def inicio(request):
@@ -45,6 +45,7 @@ def profile(request, username=None):
     if username and username != current_user.username:
         user = User.objects.get(username=username)
         posts = user.posts.all()
+        usuario = Usuario.objects.get(username=username)
     else:
         posts = current_user.posts.all()
         user = current_user
