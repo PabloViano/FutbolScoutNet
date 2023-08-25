@@ -1,0 +1,9 @@
+{% block content %}
+
+<div class="profile">
+	<img src="{{ user.profile.image.url }}">
+	<h2>@{{ user.username }}</h2>
+</div>
+
+{{ block.super }}
+{% endblock %}
