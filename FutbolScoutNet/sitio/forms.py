@@ -4,7 +4,7 @@ from sitio.models import Post
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
-class UserRegistretionForm(UserCreationForm):
+class UserRegistrationForm(UserCreationForm):
     email = forms.EmailField()
     password1 = forms.CharField(label = 'Contraseña', widget=forms.PasswordInput)
     password2 = forms.CharField(label = 'Repita Contraseña', widget=forms.PasswordInput)

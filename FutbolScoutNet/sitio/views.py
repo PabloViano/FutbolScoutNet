@@ -1,8 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm
-from sitio.forms import FormPost, UserRegistretionForm
+from sitio.forms import FormPost, UserRegistrationForm
 from sitio.models import Post, Profile, User
 
 def inicio(request):
@@ -10,12 +9,12 @@ def inicio(request):
 
 def registro(request):
     if request.method == "POST":
-        form = UserRegistretionForm(request.POST)
+        form = UserRegistrationForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect('/accounts/login')
     else:
-        form = UserRegistretionForm()
+        form = UserRegistrationForm()
 
     return render(request, 'registro.html', {'form_registro': form })
 
