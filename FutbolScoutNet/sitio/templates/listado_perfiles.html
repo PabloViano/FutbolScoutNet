@@ -1,13 +1,27 @@
-<h1>MA, VOMITE!</h1>
-<div class="lista-perfiles">
-    {% for perfil in lista_perfiles %}
-        <div class="perfil">
-            <div class="user-image">
-                <img src = "{{post.user.profile_set.get.image.url}}">
-            </div>
-        <div class="datos-perfil">
-            <h3 class="perfil-user"> Usuario: <a href= /profile/{{post.user}}>{{perfil.user}}</a></h3>
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>FutbolScoutNet - Perfiles</title>
+    <link rel="stylesheet" type="text/css" href='{% static "css/style_feedpage.css" %}'>
+    <link rel="stylesheet" type="text/css" href='{% static "css/style_profilelist.css" %}'>
+</head>
+<body>
+    <div class="feed-container">
+        <h1 class="feed-title">Perfiles</h1>
+        <div class="lista-perfiles">
+            {% for perfil in lista_perfiles %}
+                <div class="perfil">
+                    <div class="user-image">
+                        <img src="{{perfil.image.url}}">
+                    </div>
+                    <div class="datos-perfil">
+                        <h3 class="perfil-user">Usuario: <a href="/profile/{{perfil.user}}">{{perfil.user}}</a></h3>
+                    </div>
+                </div>
+            {% endfor %}
         </div>
-        </div>
-    {% endfor %}
-</div>
+    </div>
+</body>
+</html>

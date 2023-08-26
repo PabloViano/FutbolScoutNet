@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Permanent+Marker', sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    background: #222;
+}
+
+.feed-container {
+    width: 80%;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow:
+        5px 5px 5px rgba(0, 0, 0, 0.2),
+        -5px -5px 15px rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.feed-title {
+    font-size: 2em;
+    color: #007bff;
+    margin-bottom: 20px;
+}
+
+.lista-perfiles {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.perfil {
+    background-color: #f5f5f5;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.user-image img {
+    max-width: 100px;
+    border-radius: 50%;
+}
+
+.datos-perfil {
+    flex: 1;
+}
