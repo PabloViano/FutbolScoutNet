@@ -1,21 +1,21 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from sitio.forms import FormPost, FormUsuario
-from sitio.models import Post, Profile, Usuario
-
+from django.contrib.auth.forms import UserCreationForm
+from sitio.forms import FormPost, UserRegistretionForm
+from sitio.models import Post, Profile, User
 
 def inicio(request):
     return render(request, 'inicio.html', {})
 
-def form_registro(request):
+def registro(request):
     if request.method == "POST":
-        form = FormUsuario(request.POST)
+        form = UserRegistretionForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect("/feed")
+            return redirect('/accounts/login')
     else:
-        form = FormUsuario()
+        form = UserRegistretionForm()
 
     return render(request, 'registro.html', {'form_registro': form })
 
@@ -45,7 +45,7 @@ def profile(request, username=None):
     if username and username != current_user.username:
         user = User.objects.get(username=username)
         posts = user.posts.all()
-        usuario = Usuario.objects.get(username=username)
+        usuario = User.objects.get(username=username)
     else:
         posts = current_user.posts.all()
         user = current_user

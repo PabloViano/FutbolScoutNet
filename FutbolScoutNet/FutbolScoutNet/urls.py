@@ -29,7 +29,7 @@ urlpatterns = [
     path('publicacion/', views.form_post),
     path("accounts/", include("django.contrib.auth.urls")),
     path('feed/', views.feed),
-    path('registro/', views.form_registro),
+    path('registro/', views.registro),
     path('profile/<str:username>/', views.profile, name='profile'),
     path('listado-perfiles/', views.listado_perfiles)
 ]
