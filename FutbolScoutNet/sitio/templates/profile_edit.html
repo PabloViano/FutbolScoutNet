@@ -1,9 +1,16 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Editar Perfil{% endblock %}
+
 {% block content %}
-    <h2>Editar Perfil</h2>
-    <form method="post">
+<link rel="stylesheet" type="text/css" href="{% static 'css/style_profile_edit.css' %}">
+<div class="register-container">
+    <h2 class="form-title">Editar Perfil</h2>
+    <form method="post" class="register-form">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Guardar cambios</button>
     </form>
+</div>
 {% endblock %}
