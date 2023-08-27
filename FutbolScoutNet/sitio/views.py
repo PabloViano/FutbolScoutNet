@@ -44,13 +44,17 @@ def profile(request, username=None):
     if username and username != current_user.username:
         user = User.objects.get(username=username)
         posts = user.posts.all()
-        usuario = User.objects.get(username=username)
     else:
         posts = current_user.posts.all()
         user = current_user
-    return render(request, 'profile.html', {'user':user, 'posts':posts})
+    profile = Profile.objects.get(user=user)
+    return render(request, 'profile.html', {'user':user, 'posts':posts, 'profile':profile})
+
+@login_required
+def profile_edit(request, username=None):
+    return render(request, 'profile_edit.html')
 
 @login_required
 def listado_perfiles(request):
     perfiles = Profile.objects.order_by()
-    return render(request, 'listado_perfiles.html', {'lista_perfiles':perfiles})
+    return render(request, 'listado_perfiles.html', {'lista_perfiles':perfiles, 'user':request.user})

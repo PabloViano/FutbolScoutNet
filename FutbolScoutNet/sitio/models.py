@@ -19,6 +19,7 @@ class Profile(models.Model):
     image = models.ImageField(default='user.png')
     posicion = models.ForeignKey(Posicion, on_delete=models.CASCADE, null=True, blank=True)
     nivel = models.ForeignKey(Nivel, on_delete=models.CASCADE, null=True, blank=True)
+    edad = models.IntegerField(null=True, blank=True)
 
 class Post(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='posts',null = True, blank = True)

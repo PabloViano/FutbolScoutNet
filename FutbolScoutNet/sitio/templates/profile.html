@@ -10,16 +10,22 @@
         <div class="header">
             <img class="avatar" src='https://electronicssoftware.net/wp-content/uploads/user.png'>
             <h1 class="user-name">{{ user.username }}</h1>
+            <div class="header-buttons">
+                <button onclick="window.location.href='/profile-edit/{{user}}'"{{user}}>Editar perfil</button>
+            </div>
         </div>
         <ul>
             <li>
-                <h3> Nombre</h3>
+                <h3> Nombre: {{user.username}}</h3>
             </li>
             <li>
-                <h3> Posicion </h3>
+                <h3> Posicion: {{profile.posicion}}</h3>
             </li>
             <li>
-                <h3> Nacionalidad </h3>
+                <h3> Nivel: {{profile.nivel}}</h3>
+            </li>
+            <li>
+                <h3> Edad: {{profile.edad}}</h3>
             </li>
         </ul>
         <div class="descripcion">
