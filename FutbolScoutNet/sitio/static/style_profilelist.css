@@ -13,6 +13,30 @@ body {
     background: #222;
 }
 
+.header {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px;
+}
+
+.header-buttons button {
+    margin-right: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    width: 200px;
+    padding: 15px 30px;
+    border-radius: 8px;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.header-buttons button:hover {
+    background-color: #0056b3;
+}
+
 .feed-container {
     width: 80%;
     background-color: #fff;
@@ -28,28 +52,82 @@ body {
     font-size: 2em;
     color: #007bff;
     margin-bottom: 20px;
+    text-decoration: none;
 }
 
-.lista-perfiles {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 20px;
-}
-
-.perfil {
+.feed-post {
+    margin-bottom: 20px;
+    padding: 15px;
     background-color: #f5f5f5;
     border-radius: 5px;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
-    padding: 15px;
+}
+
+.post-title {
+    font-size: 1.5em;
+    color: #222;
+    margin-bottom: 5px;
+}
+
+.post-date {
+    color: #888;
+    margin-bottom: 10px;
+}
+
+.post-text {
+    color: #333;
+}
+
+.feed-post {
     display: flex;
-    align-items: center;
+    /* Cambio a flex para alinear contenido */
+    align-items: flex-start;
+    /* Alineación vertical */
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #f5f5f5;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para la imagen de usuario */
+.user-image {
+    margin-right: 15px;
+    /* Espacio entre la imagen y el contenido */
 }
 
 .user-image img {
     max-width: 100px;
+    /* Tamaño máximo de la imagen de usuario */
     border-radius: 50%;
+    /* Para hacerla redonda */
 }
 
-.datos-perfil {
+/* Estilos para el contenido de la publicación */
+.post-content {
     flex: 1;
+    /* Que el contenido ocupe el espacio restante */
 }
+
+.navbar {
+    background-color: lawngreen; /* Color de fondo de la barra */
+    display: flex;
+    justify-content: center; /* Centrar los elementos horizontalmente */
+    align-items: center; /* Centrar los elementos verticalmente */
+    padding: 10px 0; /* Espaciado interior de la barra */
+}
+
+/* Estilos para los enlaces en la barra de navegación */
+.second-nav {
+    display: flex;
+    gap: 20px; /* Espacio entre los enlaces */
+}
+
+
+
+
+
+
+
+
+
