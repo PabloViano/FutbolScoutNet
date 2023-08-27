@@ -1,9 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Condensed&display=swap');
 
 * {
     margin: 0;
     padding: 0;
-    font-family: 'Permanent+Marker', sans-serif;
+    font-family: 'Ubuntu Condensed', sans-serif;
 }
 
 body {
@@ -11,91 +11,88 @@ body {
     display: grid;
     place-items: center;
     background: #222;
+    color: white;
+    /* Cambiar el color del texto a blanco */
 }
 
-p {
-    color: #fff;
-    position: absolute;
-    text-align: center;
-    font-size: 1.5cm;
-    top: 45%;
-    left: 10%;
+.navbar {
+    background-color: #4290FF;
+    height: 50px;
+    /* Altura fija */
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 0 20px;
+    /* Espaciado interno */
+    display: flex;
+    align-items: center;
+}
+
+.nav-button {
+    background-color: white;
+    color: black;
+    border: 2px solid black;
+    padding: 8px 15px;
+    border-radius: 5px;
+    margin: 0 5px;
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.nav-button:hover {
+    background-color: black;
+    color: white;
 }
 
 .banner {
     position: relative;
+    margin-top: 100px;
+    /* Espacio para la barra de navegación */
     min-height: 80vh;
     width: 80%;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     border-radius: 8px;
     box-shadow:
-        inset 5px 5px 5px rgba(0, 0, 0, 0.2),
-        inset -5px -5px 15px rgba(255, 255, 255, 0.1),
-        5px 5px 15px rgba(0, 0, 0, 0.3),
-        -5px -5px 15px rgba(255, 255, 255, 0.1);
+        /* ... Tus sombras ... */
+    ;
+    background-color: #333;
+    /* Fondo más oscuro */
+}
+
+.banner-buttons {
+    margin-top: 20px;
+    text-align: center;
 }
 
 .banner .tittle {
-    position: absolute;
-    top: 15%;
-    left: 58%;
-    width: 1000px;
-    transform: translate(-50%, -50%);
+    position: relative;
     margin: 0;
     padding: 0 30px;
     font-size: 3em;
     color: #fff;
     text-shadow: 0 0 20px #29dbffb2;
+    text-align: center;
 }
 
-.banner .tittle:after {
-    content: attr(data-text);
-    position: absolute;
-    top: 0;
-    left: 0;
-    padding: 0 20px;
-    z-index: -1;
-    color: #29dbffb2;
-    filter: blur(15px);
+.banner-buttons {
+    margin-top: 20px;
+    text-align: center;
+    /* Alineación centrada de los botones debajo del logo */
 }
-
-.banner .tittle:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: #29dbffb2;
-    z-index: -2;
-    opacity: -5;
-    filter: blur(40px);
-}
-
-.from-control {
-    box-sizing: content-box;
-    width: 95%;
-    border: solid #29dbffb2 2px;
-    padding: 5px;
-}
-
-#LogoPagina {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
-
 .news-button,
 .auth-button {
-    background-color: black;
-    color: white;
+    background-color: #4290FF;
+    /* Color para los botones */
+    color: black;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1), 0px 1px 3px rgba(0, 0, 255, 0.3);
-    /* Sombras azules */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1), 0px 1px 3px rgba(0, 0, 0, 0.3);
+    /* Sombras */
     text-decoration: none;
     /* Elimina el subrayado del enlace */
     margin: 5px;
@@ -104,7 +101,12 @@ p {
 /* Cambia el estilo del enlace dentro del botón */
 .news-button a,
 .auth-button a {
-    color: white;
+    color: black;
     text-decoration: none;
     /* Elimina el subrayado del enlace */
+}
+
+#LogoPagina {
+    display: block;
+    margin: 0 auto;
 }

@@ -1,9 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Condensed&display=swap');
 
 * {
     margin: 0;
     padding: 0;
-    font-family: 'Permanent+Marker', sans-serif;
+    font-family: 'Ubuntu Condensed', sans-serif;
 }
 
 body {

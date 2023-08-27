@@ -7,24 +7,26 @@
     <link rel="stylesheet" type="text/css" href='{% static "css/style_landingpage.css"%}'>
 </head>
 <body>
-    <div class="header">
-        <div class="header-buttons">
+    <div class="navbar">
+        <div class="nav-buttons">
             {% if user.is_authenticated %}
-                <button class="auth-button">Bienvenido, {{ user.username }}</button>
-                <button class="auth-button"><a href="/accounts/logout/">Cerrar Sesión</a></button>
+                <a class="nav-button">Bienvenido, {{ user.username }}</a>
+                <a class="nav-button" href="/accounts/logout/">Cerrar Sesión</a>
             {% else %}
-                <button class="auth-button"><a href="/accounts/login/">Iniciar Sesión</a></button>
-                <button class="auth-button"><a href="/registro">Registrarse</a></button>
+                <a class="nav-button" href="/accounts/login/">Iniciar Sesión</a>
+                <a class="nav-button" href="/registro">Registrarse</a>
             {% endif %}
-        </div>
+</div>
     </div>
     <div class="banner">
+        <div class="logo">
+            <img id="LogoPagina" src='{% static "css/images/logo.png"%}' alt="LogoFSN">
+        </div>
         <h1 class="tittle" data-text="bannerPrincipal"><i class="fa fa-futbol-o"></i>Bienvenido a FutbolScoutNet.com!</h1>
-        <button class="news-button"><a href="/feed/">Accede a las últimas publicaciones</a></button>
-        <button class="news-button"><a href="/listado-perfiles/">Lista de Perfiles</a></button>
     </div>
-    <div class="logo">
-        <img id="LogoPagina" src='{% static "css/images/logo.png"%}' alt="LogoFSN">
+    <div class="banner-buttons">
+        <a class="news-button" href="/feed/">Accede a las últimas publicaciones</a>
+        <a class="news-button" href="/listado-perfiles/">Lista de Perfiles</a>
     </div>
 </body>
 </html>
