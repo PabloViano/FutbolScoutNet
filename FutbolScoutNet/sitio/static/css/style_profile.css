@@ -8,6 +8,13 @@ body {
     align-items: center;
 }
 
+.profile-title {
+    font-size: 2em;
+    color: #007bff;
+    margin-bottom: 20px;
+    text-decoration: none;
+}
+
 .background {
     position: absolute;
     top: 0;

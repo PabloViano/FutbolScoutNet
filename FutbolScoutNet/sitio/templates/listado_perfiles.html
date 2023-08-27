@@ -6,21 +6,57 @@
     <title>FutbolScoutNet - Perfiles</title>
     <link rel="stylesheet" type="text/css" href='{% static "css/style_feedpage.css" %}'>
     <link rel="stylesheet" type="text/css" href='{% static "css/style_profilelist.css" %}'>
+    <link rel="stylesheet" type="text/css" href='{% static "css/style_profile.css" %}'>
+    <script>
+        function mostrarContenido(contenido) {
+            const inicioContent = document.getElementById('inicio-content');
+            const perfilContent = document.getElementById('perfil-content');
+
+            if (contenido === 'inicio') {
+                inicioContent.style.display = 'block';
+                perfilContent.style.display = 'none';
+            } else if (contenido === 'perfil') {
+                inicioContent.style.display = 'none';
+                perfilContent.style.display = 'block';
+            }
+        }
+    </script>
 </head>
 <body>
     <div class="feed-container">
-        <h1 class="feed-title">Perfiles</h1>
-        <div class="lista-perfiles">
-            {% for perfil in lista_perfiles %}
-                <div class="perfil">
-                    <div class="user-image">
-                        <img src="{{perfil.image.url}}">
-                    </div>
-                    <div class="datos-perfil">
-                        <h3 class="perfil-user">Usuario: <a href="/profile/{{perfil.user}}">{{perfil.user}}</a></h3>
-                    </div>
+        <div class="navbar">
+            <nav class="second-nav">
+                    <a class="feed-title" href="javascript:void(0)" onclick="mostrarContenido('inicio')">Inicio</a>
+                    {% if request.user.is_authenticated %}
+                    <a class="profile-title" href="javascript:void(0)" onclick="mostrarContenido('perfil')">Mi Perfil</a>
+                    {% endif %}
+            </nav>
+        </div>
+
+        <div class="content">
+            <div class="feed-container" id="inicio-content">
+                <div class="lista-perfiles">
+                    {% for perfil in lista_perfiles %}
+                        <!-- Código para mostrar la lista de perfiles -->
+                        <div class="perfil">
+                            <div class="user-image">
+                                <img src="{{perfil.image.url}}">
+                            </div>
+                            <div class="datos-perfil">
+                                <h3 class="perfil-user">Usuario: <a href="/profile/{{perfil.user}}">{{perfil.user}}</a></h3>
+                            </div>
+                        </div>
+                    {% endfor %}
                 </div>
-            {% endfor %}
+            </div>
+
+            {% if request.user.is_authenticated %}
+            <div class="profile-container" id="perfil-content" style="display: none;">
+                <div class="user-info">
+                    <!-- Código para mostrar el perfil del usuario -->
+                </div>
+            </div>
+            {% endif %}
         </div>
     </div>
 </body>

@@ -52,6 +52,7 @@ body {
     font-size: 2em;
     color: #007bff;
     margin-bottom: 20px;
+    text-decoration: none;
 }
 
 .feed-post {
@@ -107,3 +108,4 @@ body {
     flex: 1;
     /* Que el contenido ocupe el espacio restante */
 }
+
