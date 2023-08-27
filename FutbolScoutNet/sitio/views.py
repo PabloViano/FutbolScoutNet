@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from sitio.forms import FormPost, UserRegistrationForm
+from sitio.forms import FormPost, UserRegistrationForm, ProfileEditForm
 from sitio.models import Post, Profile, User
 
 def inicio(request):
@@ -52,8 +52,22 @@ def profile(request, username=None):
 
 @login_required
 def profile_edit(request, username=None):
-    return render(request, 'profile_edit.html')
+    user = User.objects.get(username=username)
+    profile = Profile.objects.get(user=user)
 
+    # Verificar que el usuario actual esté editando su propio perfil
+    if request.user != user:
+        return redirect('profile', username=username)
+
+    if request.method == "POST":
+        form = ProfileEditForm(request.POST, instance=profile)
+        if form.is_valid():
+            form.save()
+            return redirect('profile', username=username)
+    else:
+        form = ProfileEditForm(instance=profile)
+
+    return render(request, 'profile_edit.html', {'form': form})
 @login_required
 def listado_perfiles(request):
     perfiles = Profile.objects.order_by()

@@ -11,12 +11,14 @@
             <img class="avatar" src='https://electronicssoftware.net/wp-content/uploads/user.png'>
             <h1 class="user-name">{{ user.username }}</h1>
             <div class="header-buttons">
-                <button onclick="window.location.href='/profile-edit/{{user}}'"{{user}}>Editar perfil</button>
+                {% if user == request.user %}
+                    <button onclick="window.location.href='/profile-edit/{{user}}'"{{user}}>Editar perfil</button>
+                {% endif %}
             </div>
         </div>
         <ul>
             <li>
-                <h3> Nombre: {{user.username}}</h3>
+                <h3> Username: {{user.username}}</h3>
             </li>
             <li>
                 <h3> Posicion: {{profile.posicion}}</h3>

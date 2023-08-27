@@ -1,6 +1,6 @@
 from django import forms
 from django.core.exceptions import ValidationError
-from sitio.models import Post
+from sitio.models import Post, Profile
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
@@ -22,3 +22,8 @@ class FormPost(forms.ModelForm):
        widgets = {
            'fecha': forms.DateInput(attrs={'type': 'date'})
        }
+
+class ProfileEditForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['posicion', 'nivel', 'edad']
