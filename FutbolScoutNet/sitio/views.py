@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from sitio.forms import FormPost, UserRegistrationForm, ProfileEditForm
-from sitio.models import Post, Profile, User
+from sitio.models import Post, Profile, User, Posicion, Nivel
 
 def inicio(request):
     return render(request, 'inicio.html', {})
@@ -68,7 +68,24 @@ def profile_edit(request, username=None):
         form = ProfileEditForm(instance=profile)
 
     return render(request, 'profile_edit.html', {'form': form})
+
 @login_required
 def listado_perfiles(request):
-    perfiles = Profile.objects.order_by()
-    return render(request, 'listado_perfiles.html', {'lista_perfiles':perfiles, 'user':request.user})
+    perfiles = Profile.objects.all()
+    niveles = Nivel.objects.all()
+    posiciones = Posicion.objects.all()
+
+    # Obtener los parámetros de filtrado de la solicitud GET
+    edad = request.GET.get('edad')
+    nivel = request.GET.get('nivel')
+    posicion = request.GET.get('posicion')
+
+    # Aplicar filtros si los parámetros están presentes
+    if edad:
+        perfiles = perfiles.filter(edad=edad)
+    if nivel:
+        perfiles = perfiles.filter(nivel__nombre=nivel)
+    if posicion:
+        perfiles = perfiles.filter(posicion__nombre=posicion)
+
+    return render(request, 'listado_perfiles.html', {'lista_perfiles': perfiles, 'user': request.user, 'niveles':niveles, 'posiciones':posiciones})

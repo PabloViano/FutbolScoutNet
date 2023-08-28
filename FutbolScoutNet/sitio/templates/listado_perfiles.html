@@ -7,30 +7,44 @@
     <link rel="stylesheet" type="text/css" href='{% static "css/style_feedpage.css" %}'>
     <link rel="stylesheet" type="text/css" href='{% static "css/style_profilelist.css" %}'>
     <link rel="stylesheet" type="text/css" href='{% static "css/style_profile.css" %}'>
-    <script>
-        function mostrarContenido(contenido) {
-            const inicioContent = document.getElementById('inicio-content');
-            const perfilContent = document.getElementById('perfil-content');
-
-            if (contenido === 'inicio') {
-                inicioContent.style.display = 'block';
-                perfilContent.style.display = 'none';
-            }
-        }
-    </script>
 </head>
 <body>
     <div class="feed-container">
         <div class="navbar">
             <nav class="second-nav">
-                    <a class="feed-title" href="javascript:void(0)" onclick="mostrarContenido('inicio')">Inicio</a>
-                    {% if request.user.is_authenticated %}
-                    <a class="profile-title" href= /profile/{{user}}> Mi Perfil</a>
-                    {% endif %}
+                <a class="feed-title" href="javascript:void(0)" onclick="mostrarContenido('inicio')">Inicio</a>
+                {% if request.user.is_authenticated %}
+                <a class="profile-title" href="/profile/{{user}}">Mi Perfil</a>
+                {% endif %}
             </nav>
         </div>
 
         <div class="content">
+            <div class="filter-container">
+                <form method="get">
+                    <label for="edad">Filtrar por edad:</label>
+                    <input type="number" name="edad" id="edad" value="{{ request.GET.edad }}">
+
+                    <label for="nivel">Filtrar por nivel:</label>
+                    <select name="nivel" id="nivel">
+                        <option value="">Todos</option>
+                        {% for nivel_obj in niveles %}
+                            <option value="{{ nivel_obj.nombre }}" {% if nivel_obj.nombre == request.GET.nivel %}selected{% endif %}>{{ nivel_obj.nombre }}</option>
+                        {% endfor %}
+                    </select>
+
+                    <label for="posicion">Filtrar por posición:</label>
+                    <select name="posicion" id="posicion">
+                        <option value="">Todas</option>
+                        {% for posicion_obj in posiciones %}
+                            <option value="{{ posicion_obj.nombre }}" {% if posicion_obj.nombre == request.GET.posicion %}selected{% endif %}>{{ posicion_obj.nombre }}</option>
+                        {% endfor %}
+                    </select>
+
+                    <button type="submit">Aplicar Filtros</button>
+                </form>
+            </div>
+
             <div class="feed-container" id="inicio-content">
                 <div class="lista-perfiles">
                     {% for perfil in lista_perfiles %}
@@ -46,15 +60,8 @@
                     {% endfor %}
                 </div>
             </div>
-
-            {% if request.user.is_authenticated %}
-            <div class="profile-container" id="perfil-content" style="display: none;">
-                <div class="user-info">
-                    <!-- Código para mostrar el perfil del usuario -->
-                </div>
-            </div>
-            {% endif %}
         </div>
     </div>
 </body>
 </html>
+
