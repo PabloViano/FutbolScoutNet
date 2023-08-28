@@ -7,8 +7,8 @@
 <body>
     <div class="background"></div>
     <div class="container">
-        <div class="header">
-            <img class="avatar" src='https://electronicssoftware.net/wp-content/uploads/user.png'>
+        <div class="header" style="background-image: url('/media/default_background.jpg');">
+            <img class="avatar" src={{user.profile_set.get.image.url}}>
             <h1 class="user-name">{{ user.username }}</h1>
             <div class="header-buttons">
                 {% if user == request.user %}
@@ -18,7 +18,7 @@
         </div>
         <ul>
             <li>
-                <h3> Username: {{user.username}}</h3>
+                <h3> Usuario: {{user.username}}</h3>
             </li>
             <li>
                 <h3> Posicion: {{profile.posicion}}</h3>

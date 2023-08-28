@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu+Condensed&display=swap');
 
+* {
+    font-family: 'Ubuntu Condensed', sans-serif;
+}
+
 body {
     margin: 0;
     min-height: 100vh;
@@ -37,27 +41,31 @@ body {
     z-index: 1;
 }
 
-.header{
+.header {
     text-align: center;
     height: 300px;
     padding: 12px;
-    background-image: url("https://www.mikebonnell.com/content/051/MikeBonnell_051_W0800.jpg");
-    padding: 0%;
-    border: 1px solid black; /* Agrega esta línea para el borde negro */
-    border-radius: 10px; /* Agrega esta línea para redondear los bordes */
+    border: 1px solid black;
+    border-radius: 10px;
+    background-size: cover;
+    background-position: center;
 }
-.avatar{
+.avatar {
     width: 200px;
     height: 200px;
-    border-radius: 50px;
+    border-radius: 100px;
+    overflow: hidden;
     display: block;
     margin: 0 auto;
+    object-fit: cover;
 }
+
 .user-name{
     font-size: 18px;
     margin-top: 14px;
     color: rgba(255, 255, 255, 0.651)
 }
+
 .descripcion {
     margin-top: 20px;
 }

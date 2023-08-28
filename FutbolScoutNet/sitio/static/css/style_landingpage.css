@@ -56,9 +56,6 @@ body {
     align-items: center;
     justify-content: center;
     border-radius: 8px;
-    box-shadow:
-        /* ... Tus sombras ... */
-    ;
     background-color: #333;
     /* Fondo más oscuro */
 }
