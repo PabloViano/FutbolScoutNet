@@ -110,7 +110,7 @@ body {
 }
 
 .navbar {
-    background-color: lawngreen; /* Color de fondo de la barra */
+    background-color: lightskyblue; /* Color de fondo de la barra */
     display: flex;
     justify-content: center; /* Centrar los elementos horizontalmente */
     align-items: center; /* Centrar los elementos verticalmente */
