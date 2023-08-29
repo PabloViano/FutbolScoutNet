@@ -18,7 +18,7 @@ class UserRegistrationForm(UserCreationForm):
 class FormPost(forms.ModelForm):
     class Meta:
        model = Post
-       fields = ['titulo', 'texto', 'fecha', 'verificado']
+       fields = ['titulo', 'texto', 'fecha', 'multimedia','verificado']
        widgets = {
            'fecha': forms.DateInput(attrs={'type': 'date'})
        }

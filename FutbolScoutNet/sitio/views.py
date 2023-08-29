@@ -22,7 +22,7 @@ def registro(request):
 def form_post(request):
     current_user = get_object_or_404(User, pk=request.user.pk)
     if request.method == "POST":
-        form = FormPost(request.POST)
+        form = FormPost(request.POST, request.FILES)
         if form.is_valid():
             post = form.save(commit=False)
             post.user = current_user

@@ -4,7 +4,7 @@
 {% block content %}
 {% load static %}
 <link rel="stylesheet" type="text/css" href='{% static "css/style_create_post.css"%}'>
-  <div class="create-post-container">
+  <div class="create-post-container" encrypte="multipart/from-data">
     <h2>Cargue los datos de la publicación</h2>
     <form method="post" class="create-post-form">
       {% csrf_token %}

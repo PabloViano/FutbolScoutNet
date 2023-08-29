@@ -20,11 +20,14 @@
                     <div class="user-image">
                         <img src = "{{post.user.profile_set.get.image.url}}">
                     </div>
-                <div class="post-content">
+                <div class="post-content" encrypte="multipart/from-data">
                     <h3 class="post-user"> Usuario: <a href= /profile/{{post.user}}>{{post.user}}</a></h3>
                     <h3 class="post-title">{{ post.titulo }}</h3>
                     <p class="post-date">{{ post.fecha }}</p>
                     <p class="post-text">{{ post.texto }}</p>
+                    {% if post.multimedia %}
+                    <img class="post-multimedia" src="/media/{{post.multimedia}}/">
+                    {% endif %}
                 </div>
                 </div>
             {% endfor %}
