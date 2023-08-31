@@ -46,7 +46,6 @@ body {
     color: white;
 }
 
-/* NAV BAR*/
 /* LANDING PAGE*/
 
 .banner {
@@ -113,7 +112,6 @@ body {
     margin: 0 auto;
 }
 
-/* LANDING PAGE*/
 /* FEED */
 
 .header {
@@ -167,6 +165,10 @@ body {
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
+.post-user{
+    color: #222;
+}
+
 .post-title {
     font-size: 1.5em;
     color: #222;
@@ -213,7 +215,105 @@ body {
     /* Que el contenido ocupe el espacio restante */
 }
 
-/* FEED*/
+/* PROFILES LIST*/
+
+/* PROFILES LIST*/
+
+.lista-perfiles {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.perfil {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow:
+        5px 5px 5px rgba(0, 0, 0, 0.2),
+        -5px -5px 15px rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.perfil-user {
+    font-size: 1.2em;
+    color: #333;
+    margin-top: 10px;
+}
+
+.user-image {
+    width: 80px; /* Ajusta el tamaño de la imagen según tus preferencias */
+    height: 80px; /* Ajusta el tamaño de la imagen según tus preferencias */
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.user-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.datos-perfil {
+    flex: 1;
+}
+
+/* Styles for the filter container */
+
+.filter-container {
+    background-color: #3235f1;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.filter-container form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+}
+
+.filter-container label {
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+.filter-container input[type="number"],
+.filter-container select {
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.filter-container button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.filter-container button:hover {
+    background-color: #0056b3;
+}
+
+/* Profile link style */
+
+.perfil-user a {
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.perfil-user a:hover {
+    color: #0056b3;
+}
+
 /* PROFILES */
 
 
