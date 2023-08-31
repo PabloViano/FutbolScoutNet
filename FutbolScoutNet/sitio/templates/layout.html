@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>FutbolScoutNet</title>
+        <link rel="stylesheet" type="text/css" href='{% static "css/style_layout.css"%}'>
+    </head>
+    <body>
+        <div class="navbar">
+            <div class="nav-buttons">
+                {% if user.is_authenticated %}
+                    <a class="nav-button">Bienvenido, {{ user.username }}</a>
+                    <a class="nav-button" href="/accounts/logout/">Cerrar Sesión</a>
+                {% else %}
+                    <a class="nav-button" href="/accounts/login/">Iniciar Sesión</a>
+                    <a class="nav-button" href="/registro">Registrarse</a>
+                {% endif %}
+            </div>
+        </div>
+
+        {% block contenido %}
+        {% endblock %}
+    </body>
+<html>

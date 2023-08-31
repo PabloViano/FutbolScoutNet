@@ -1,23 +1,7 @@
+{% extends 'layout.html'%}
 {% load static %}
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>FutbolScoutNet</title>
-    <link rel="stylesheet" type="text/css" href='{% static "css/style_landingpage.css"%}'>
-</head>
-<body>
-    <div class="navbar">
-        <div class="nav-buttons">
-            {% if user.is_authenticated %}
-                <a class="nav-button">Bienvenido, {{ user.username }}</a>
-                <a class="nav-button" href="/accounts/logout/">Cerrar Sesión</a>
-            {% else %}
-                <a class="nav-button" href="/accounts/login/">Iniciar Sesión</a>
-                <a class="nav-button" href="/registro">Registrarse</a>
-            {% endif %}
-</div>
-    </div>
+{% block contenido %}
+    <link rel="stylesheet" type="text/css" href='{% static "css/style_layout.css"%}'>
     <div class="banner">
         <div class="logo">
             <img id="LogoPagina" src='{% static "css/images/logo.png"%}' alt="LogoFSN">
@@ -28,5 +12,4 @@
         <a class="news-button" href="/feed/">Accede a las últimas publicaciones</a>
         <a class="news-button" href="/listado-perfiles/">Lista de Perfiles</a>
     </div>
-</body>
-</html>
+{% endblock %}

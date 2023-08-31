@@ -1,12 +1,6 @@
+{% extends 'layout.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>FutbolScoutNet - Últimas Publicaciones</title>
-    <link rel="stylesheet" type="text/css" href='{% static "css/style_feedpage.css" %}'>
-</head>
-<body>
+{%block contenido%}
     <div class="feed-container">
         <h1 class="feed-title">Últimas Publicaciones</h1>
         <div class="header">
@@ -33,6 +27,5 @@
             {% endfor %}
         </div>
     </div>
-</body>
-</html>
+{%endblock%}
 
