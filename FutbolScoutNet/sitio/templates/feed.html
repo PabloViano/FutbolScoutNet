@@ -22,6 +22,9 @@
                     {% if post.multimedia %}
                     <img class="post-multimedia" src="/media/{{post.multimedia}}/" width="250" height="250">
                     {% endif %}
+                    {% if post.video %}
+                    <video class="post-video" src="/media/{{post.video}}/" width="250" height="250" autoplay="autoplay">
+                    {% endif %}
                 </div>
                 </div>
             {% endfor %}

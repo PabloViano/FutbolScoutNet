@@ -25,6 +25,7 @@ class Post(models.Model):
     texto = models.CharField(max_length=500)
     fecha = models.DateTimeField()
     multimedia = models.ImageField(upload_to="UsersMultimedia", null = True)
+    video = models.FileField(upload_to="videos",null = True)
     verificado = models.BooleanField(default=False)
 
     def __str__(self) -> str:
