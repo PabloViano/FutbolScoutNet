@@ -73,3 +73,16 @@ form {
 .login-form button:hover {
     background-color: #0056b3;
 }
+
+.register-link {
+    text-align: center;
+    margin-top: 1cm; /* Espacio de 1 centímetro debajo del formulario */
+}
+
+.register-link p {
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+    display: inline-block;
+}
