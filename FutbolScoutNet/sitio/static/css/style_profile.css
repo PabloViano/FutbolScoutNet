@@ -50,6 +50,25 @@ body {
     background-size: cover;
     background-position: center;
 }
+
+.header-buttons button {
+    margin-right: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    width: 160px;
+    padding: 15px 30px;
+    border-radius: 8px;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.header-buttons button:hover {
+    background-color: #0056b3;
+}
+
 .avatar {
     width: 200px;
     height: 200px;
