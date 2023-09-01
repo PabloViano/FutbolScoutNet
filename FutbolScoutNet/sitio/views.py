@@ -60,7 +60,7 @@ def profile_edit(request, username=None):
         return redirect('profile', username=username)
 
     if request.method == "POST":
-        form = ProfileEditForm(request.POST, instance=profile)
+        form = ProfileEditForm(request.POST,  request.FILES, instance=profile)
         if form.is_valid():
             form.save()
             return redirect('profile', username=username)

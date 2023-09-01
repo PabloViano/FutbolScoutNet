@@ -14,7 +14,7 @@ class Nivel(models.Model):
 
 class Profile(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE,null = True, blank = True)
-    image = models.ImageField(default='user.png')
+    image = models.ImageField(upload_to="Profiles_Images", default='user.png')
     posicion = models.ForeignKey(Posicion, on_delete=models.CASCADE, null=True, blank=True)
     nivel = models.ForeignKey(Nivel, on_delete=models.CASCADE, null=True, blank=True)
     edad = models.IntegerField(null=True, blank=True)

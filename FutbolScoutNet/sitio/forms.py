@@ -26,4 +26,4 @@ class FormPost(forms.ModelForm):
 class ProfileEditForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ['posicion', 'nivel', 'edad']
+        fields = ['image', 'posicion', 'nivel', 'edad']
