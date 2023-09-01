@@ -38,7 +38,7 @@ body {
     width: 80%; /* Puedes ajustar este valor según tus necesidades */
     max-width: 1200px; /* Limitar el ancho máximo del contenido */
     position: relative;
-    z-index: 1;
+    z-index: -1;
 }
 
 .button {
