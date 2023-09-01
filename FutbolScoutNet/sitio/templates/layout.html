@@ -9,6 +9,7 @@
     <body>
         <div class="navbar">
             <div class="nav-buttons">
+                <a class="nav-button" href="/">Inicio</a>
                 {% if user.is_authenticated %}
                     <a class="nav-button">Bienvenido, {{ user.username }}</a>
                     <a class="nav-button" href="/accounts/logout/">Cerrar Sesión</a>
