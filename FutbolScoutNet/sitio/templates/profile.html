@@ -1,3 +1,4 @@
+{% block contenido %}
 {% load static %}
 <head>
 	<title>Mi Perfil</title>
@@ -6,6 +7,7 @@
 <body>
     <div class="background"></div>
     <div class="container">
+        <a class="button" href="/">Inicio</a>
         <div class="header" style="background-image: url('/media/default_background.jpg');">
             <img class="avatar" src={{user.profile_set.get.image.url}}>
             <h1 class="user-name">{{ user.username }}</h1>
@@ -54,3 +56,4 @@
         </div>
     </div>
 </body>
+{% endblock %}
