@@ -76,13 +76,16 @@ def listado_perfiles(request):
     posiciones = Posicion.objects.all()
 
     # Obtener los parámetros de filtrado de la solicitud GET
-    edad = request.GET.get('edad')
+    edad_min = request.GET.get('edad_min')
+    edad_max = request.GET.get('edad_max')
     nivel = request.GET.get('nivel')
     posicion = request.GET.get('posicion')
 
     # Aplicar filtros si los parámetros están presentes
-    if edad:
-        perfiles = perfiles.filter(edad=edad)
+    if edad_min:
+        perfiles = perfiles.filter(edad__gte=edad_min)
+    if edad_max:
+        perfiles = perfiles.filter(edad__lte=edad_max)
     if nivel:
         perfiles = perfiles.filter(nivel__nombre=nivel)
     if posicion:

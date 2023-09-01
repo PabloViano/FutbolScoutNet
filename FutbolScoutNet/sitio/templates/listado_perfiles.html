@@ -6,9 +6,12 @@
         <div class="content">
             <div class="filter-container">
                 <form method="get">
-                    <label for="edad">Filtrar por edad:</label>
-                    <input type="number" name="edad" id="edad" value="{{ request.GET.edad }}">
+                    <label for="edad_min">Edad Mínima:</label>
+                    <input type="number" name="edad_min" id="edad_min" min="1" max="100" value="{{ request.GET.edad_min }}">
 
+                    <label for="edad_max">Edad Máxima:</label>
+                    <input type="number" name="edad_max" id="edad_max" min="1" max="100" value="{{ request.GET.edad_max }}">
+                    
                     <label for="nivel">Filtrar por nivel:</label>
                     <select name="nivel" id="nivel">
                         <option value="">Todos</option>
