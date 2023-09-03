@@ -1,23 +1,18 @@
-{% block contenido %}
+{% extends 'layout.html'%}
 {% load static %}
-<head>
-	<title>Mi Perfil</title>
-	<link rel="stylesheet" type="text/css" href='{% static "css/style_profile.css"%}'>
-</head>
-<body>
-    <div class="background"></div>
-    <div class="container">
-        <a class="button" href="/">Inicio</a>
-        <div class="header" style="background-image: url('/media/default_background.jpg');">
-            <img class="avatar" src={{user.profile_set.get.image.url}}>
-            <h1 class="user-name">{{ user.username }}</h1>
-            <div class="header-buttons">
+{% block contenido %}
+<div class="custom-background">
+    <div class="custom-container">
+        <div class="custom-header" style="background-image: url('/media/default_background.jpg');">
+            <img class="custom-avatar" src={{user.profile_set.get.image.url}}>
+            <h1 class="custom-user-name">{{ user.username }}</h1>
+            <div class="custom-header-buttons">
                 {% if user == request.user %}
-                    <button onclick="window.location.href='/profile-edit/{{user}}'"{{user}}>Editar perfil</button>
+                    <button class="custom-edit-button" onclick="window.location.href='/profile-edit/{{user}}'">Editar perfil</button>
                 {% endif %}
             </div>
         </div>
-        <ul>
+        <ul class="custom-user-info">
             <li>
                 <h3> Usuario: {{user.username}}</h3>
             </li>
@@ -31,23 +26,23 @@
                 <h3> Edad: {{profile.edad}}</h3>
             </li>
         </ul>
-        <div class="descripcion">
+        <div class="custom-descripcion">
             <h3>Acerca de: </h3>
             <p>
                 Descripcion del jugador
             </p>
         </div>
-        <div class="posteos">
+        <div class="custom-posteos">
             <h3>Posts de {{ user.username }}:</h3>
-            <div class="posteos" encrypte="multipart/from-data">
+            <div class="custom-post-container" encrypte="multipart/from-data">
                 {% for post in posts %}
-                    <div class="user-post">
-                    <div class="post-content">
-                        <h3 class="post-title">{{ post.titulo }}</h3>
-                        <p class="post-date">{{ post.fecha }}</p>
-                        <p class="post-text">{{ post.texto }}</p>
+                    <div class="custom-user-post">
+                    <div class="custom-post-content">
+                        <h3 class="custom-post-title">{{ post.titulo }}</h3>
+                        <p class="custom-post-date">{{ post.fecha }}</p>
+                        <p class="custom-post-text">{{ post.texto }}</p>
                         {% if post.multimedia %}
-                        <img class="post-multimedia" src="/media/{{post.multimedia}}/" width="300" height="300">
+                        <img class="custom-post-multimedia" src="/media/{{post.multimedia}}/" width="300" height="300">
                         {% endif %}
                     </div>
                     </div>
@@ -55,5 +50,5 @@
             </div>
         </div>
     </div>
-</body>
+</div>
 {% endblock %}

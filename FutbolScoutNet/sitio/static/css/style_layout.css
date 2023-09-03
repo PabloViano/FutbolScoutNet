@@ -18,7 +18,7 @@ body {
 
 .navbar {
     background-color: #4290FF;
-    height: 50px;
+    height: 60px;
     /* Altura fija */
     position: fixed;
     top: 0;
@@ -28,9 +28,13 @@ body {
     /* Espaciado interno */
     display: flex;
     align-items: center;
+    z-index: 1000;
+    margin-bottom: 5px;
+    /* Asegura que la barra de navegación esté en la parte superior */
 }
 
 .nav-button {
+    height: 4%;
     background-color: white;
     color: black;
     border: 2px solid black;
@@ -313,9 +317,126 @@ body {
 .perfil-user a:hover {
     color: #0056b3;
 }
-
 /* PROFILES */
 
+/* Estilo personalizado para la página de perfil */
+.custom-background {
+    background-color: #222;
+    display: grid;
+    place-items: center;
+    color: white;
+    width: 100%;
+    position: relative;
+    margin-top: 5%;
+}
 
+.custom-container {
+    width: 95%;
+}
 
+.custom-header {
+    display: flex;
+    flex-direction: column;
+    /* Cambiar la dirección de flex a columna */
+    align-items: center;
+    /* Alinear los elementos al centro verticalmente */
+    padding: 10px;
+    background-image: url('/media/default_background.jpg');
+    background-size: cover;
+    background-position: center;
+    border-radius: 8px;
+    height: 30%;
+    position: relative;
+    overflow: hidden;
+}
 
+.custom-avatar {
+    width: 200px;
+    /* Ajustar el ancho de la foto de perfil */
+    height: 200px;
+    /* Ajustar la altura de la foto de perfil */
+    border-radius: 100%;
+    margin-bottom: 20px;
+    /* Agregar espacio entre la foto de perfil y el nombre */
+    border: 2px solid white;
+    object-fit: cover;
+    /* Evitar que la imagen se deforme */
+}
+
+.custom-user-name {
+    font-size: 2em;
+    color: white;
+    margin: 0;
+}
+
+.custom-header-buttons {
+    margin-top: 10px;
+    /* Agregar espacio entre la foto de perfil y el botón */
+}
+
+.custom-edit-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.custom-edit-button:hover {
+    background-color: #0056b3;
+}
+
+.custom-user-info {
+    list-style: none;
+    padding: 0;
+}
+
+.custom-user-info h3 {
+    font-size: 1.5em;
+    margin: 10px 0;
+    color: white;
+}
+
+.custom-descripcion {
+    margin-top: 20px;
+}
+
+.custom-descripcion h3 {
+    font-size: 1.5em;
+    color: white;
+    margin-bottom: 10px;
+}
+
+.custom-descripcion p {
+    color: white;
+}
+
+.custom-posteos {
+    margin-top: 20px;
+    border: 2px solid white;
+}
+
+.custom-post-title {
+    font-size: 1.5em;
+    color: #007bff;
+    margin-bottom: 5px;
+}
+
+.custom-post-date {
+    color: #888;
+    margin-bottom: 10px;
+}
+
+.custom-post-text {
+    color: #ffffff;
+}
+
+.custom-post-multimedia {
+    max-width: 100%;
+    height: auto;
+    margin-top: 10px;
+    border-radius: 8px;
+}
