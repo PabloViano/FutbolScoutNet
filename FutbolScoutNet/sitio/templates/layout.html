@@ -11,9 +11,9 @@
             <div class="nav-buttons">
                 <a class="nav-button" href="/">Inicio</a>
                 {% if user.is_authenticated %}
-                    <a class="nav-button">Bienvenido, {{ user.username }}</a>
+                    <a class="nav-button">Bienvenido, {{ request.user.username }}</a>
                     <a class="nav-button" href="/accounts/logout/">Cerrar Sesión</a>
-                    <a class="nav-button" href="/profile/{{user.username}}">
+                    <a class="nav-button" href="/profile/{{request.user.username}}">
                         Mi Perfil
                     </a>
                 {% else %}
