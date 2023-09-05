@@ -28,8 +28,11 @@ class Post(models.Model):
     video = models.FileField(upload_to="videos",blank = True,null = True)
     verificado = models.BooleanField(default=False)
 
-    def __str__(self) -> str:
+    def str(self):
+    if self.user:
         return f'Post: {self.titulo[:20]} de {self.user.username}'
+    else:
+        return f'Post: {self.titulo[:20]} (Usuario no especificado)'
 
 def create_profile(sender, instance, created, **kwargs):
     if created:
