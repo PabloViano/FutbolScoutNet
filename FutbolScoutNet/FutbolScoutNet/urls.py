@@ -33,6 +33,4 @@ urlpatterns = [
     path('profile/<str:username>/', views.profile, name='profile'),
     path('listado-perfiles/', views.listado_perfiles),
     path('profile-edit/<str:username>/', views.profile_edit)
-]
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
