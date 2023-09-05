@@ -28,7 +28,7 @@ class Post(models.Model):
     video = models.FileField(upload_to="videos",blank = True,null = True)
     verificado = models.BooleanField(default=False)
 
-    def str(self):
+    def __str__(self):
         if self.user:
             return f'Post: {self.titulo[:20]} de {self.user.username}'
         else:
