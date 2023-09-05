@@ -29,10 +29,10 @@ class Post(models.Model):
     verificado = models.BooleanField(default=False)
 
     def str(self):
-    if self.user:
-        return f'Post: {self.titulo[:20]} de {self.user.username}'
-    else:
-        return f'Post: {self.titulo[:20]} (Usuario no especificado)'
+        if self.user:
+            return f'Post: {self.titulo[:20]} de {self.user.username}'
+        else:
+            return f'Post: {self.titulo[:20]} (Usuario no especificado)'
 
 def create_profile(sender, instance, created, **kwargs):
     if created:
