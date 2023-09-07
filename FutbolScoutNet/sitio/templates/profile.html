@@ -42,7 +42,7 @@
                         <p class="custom-post-date">{{ post.fecha }}</p>
                         <p class="custom-post-text">{{ post.texto }}</p>
                         {% if post.multimedia %}
-                        <img class="custom-post-multimedia" src="/media/{{post.multimedia}}/" width="300" height="300">
+                        <img class="custom-post-multimedia" src="{{MEDIA_URL}}{{post.multimedia.url}}/" width="300" height="300">
                         {% endif %}
                     </div>
                     </div>

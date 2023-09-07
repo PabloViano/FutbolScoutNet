@@ -126,6 +126,7 @@ AWS_S3_OBJECT_PARAMETERS = {
     'CacheControl': 'max-age=86400',
 }
 AWS_LOCATION = 'static'
+AWS_S3_REGION_NAME = 'us-east-1'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'mysite/static'),
 ]
