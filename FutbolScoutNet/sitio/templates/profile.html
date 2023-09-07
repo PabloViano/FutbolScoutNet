@@ -3,7 +3,7 @@
 {% block contenido %}
 <div class="custom-background">
     <div class="custom-container">
-        <div class="custom-header" style="background-image: url('/media/default_background.jpg');">
+        <div class="custom-header" style="background-image: url('{{MEDIA_URL}} default_background.jpg');">
             <img class="custom-avatar" src={{user.profile_set.get.image.url}}>
             <h1 class="custom-user-name">{{ user.username }}</h1>
             <div class="custom-header-buttons">
