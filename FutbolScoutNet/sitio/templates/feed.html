@@ -20,10 +20,10 @@
                     <p class="post-date">{{ post.fecha }}</p>
                     <p class="post-text">{{ post.texto }}</p>
                     {% if post.multimedia %}
-                    <img class="post-multimedia" src="{{MEDIA_URL}}{{post.multimedia.url}}/" width="250" height="250">
+                    <img class="post-multimedia" src="{{MEDIA_URL}}{{post.multimedia.url}}" width="250" height="250">
                     {% endif %}
                     {% if post.video %}
-                    <video class="post-video" src="{{MEDIA_URL}}{{post.video.url}}/" width="250" height="250" autoplay="autoplay">
+                    <video class="post-video" src="{{MEDIA_URL}}{{post.video.url}}" width="250" height="250" autoplay="autoplay">
                     {% endif %}
                 </div>
                 </div>
