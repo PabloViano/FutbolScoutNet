@@ -1,54 +1,45 @@
 {% extends 'layout.html'%}
 {% load static %}
 {% block contenido %}
-<div class="custom-background">
-    <div class="custom-container">
-        <div class="custom-header" href="https://django-futbolscoutnet-files.s3.amazonaws.com/media/default_background.jpg">
-            <img class="custom-avatar" src='{{user.profile_set.get.image.url}}'>
-            <h1 class="custom-user-name">{{ user.username }}</h1>
-            <div class="custom-header-buttons">
-                {% if user == request.user %}
-                    <button class="custom-edit-button" onclick="window.location.href='/profile-edit/{{user}}'">Editar perfil</button>
-                {% endif %}
-            </div>
-        </div>
-        <ul class="custom-user-info">
-            <li>
-                <h3> Usuario: {{user.username}}</h3>
-            </li>
-            <li>
-                <h3> Posicion: {{profile.posicion}}</h3>
-            </li>
-            <li>
-                <h3> Nivel: {{profile.nivel}}</h3>
-            </li>
-            <li>
-                <h3> Edad: {{profile.edad}}</h3>
-            </li>
-        </ul>
-        <div class="custom-descripcion">
-            <h3>Acerca de: </h3>
-            <p>
-                Descripcion del jugador
-            </p>
-        </div>
-        <div class="custom-posteos">
-            <h3>Posts de {{ user.username }}:</h3>
-            <div class="custom-post-container" encrypte="multipart/from-data">
-                {% for post in posts %}
-                    <div class="custom-user-post">
-                    <div class="custom-post-content">
-                        <h3 class="custom-post-title">{{ post.titulo }}</h3>
-                        <p class="custom-post-date">{{ post.fecha }}</p>
-                        <p class="custom-post-text">{{ post.texto }}</p>
-                        {% if post.multimedia %}
-                        <img class="custom-post-multimedia" src="{{MEDIA_URL}}{{post.multimedia.url}}" width="300" height="300">
-                        {% endif %}
-                    </div>
-                    </div>
-                {% endfor %}
-            </div>
-        </div>
+<div style="margin-top: 10px;"></div>
+<div class="card mb-3" style="display: flex; flex-direction: column; align-items: center; padding: 10px; background-image: url('https://django-futbolscoutnet-files.s3.amazonaws.com/media/default_background.jpg'); background-size: cover; background-position: center; border-radius: 8px; height: 30%; position: relative; overflow: hidden;">
+    <span class="badge rounded-pill bg-primary" style="font-size: 20px; padding: 6px 14px;">{{user.username}}</span>
+    <div style="margin-top: -10px;"></div> <!-- Espacio uniforme entre el nombre de usuario y la imagen -->
+    <div class="d-flex justify-content-center align-items-center mt-4">
+        <img class="rounded-circle" style="width: 200px; height: 200px; object-fit: cover; border: 2px solid white;" src="{{ user.profile_set.get.image.url }}">
+    </div>
+    <div style="margin-top: 10px;"></div> <!-- Espacio uniforme entre la imagen y el botón editar perfil -->
+    <div style="margin-top: auto;">
+        {% if user == request.user %}
+            <button type="button" class="btn btn-primary" onclick="window.location.href='/profile-edit/{{user}}'">Editar Perfil</button>
+        {% endif %}
     </div>
 </div>
+
+<div class="card text-white bg-primary mb-3" style="max-width: 200rem; border: 2px solid white;">
+  <div class="card-header">Datos</div>
+  <div class="card-body">
+    <h4 class="card-title">Posicion: {{profile.posicion}}</h4>
+    <h4 class="card-title">Nivel: {{profile.nivel}}</h4>
+    <h4 class="card-title">Edad: {{profile.edad}}</h4>
+  </div>
+</div>
+<div class="card text-white bg-primary mb-3" style="max-width: 200rem; border: 2px solid white;">
+  <div class="card-header">Posts</div>
+  <div class="card-body">
+      {% for post in posts %}
+        <div class="custom-user-post">
+          <div class="custom-post-content">
+              <h3 class="custom-post-title">{{ post.titulo }}</h3>
+              <p class="custom-post-date">{{ post.fecha }}</p>
+              <p class="custom-post-text">{{ post.texto }}</p>
+              {% if post.multimedia %}
+                <img class="custom-post-multimedia" src="{{MEDIA_URL}}{{post.multimedia.url}}" width="300" height="300">
+              {% endif %}
+          </div>
+        </div>
+      {% endfor %}
+  </div>
+</div>
+
 {% endblock %}

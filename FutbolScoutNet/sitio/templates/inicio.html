@@ -1,15 +1,13 @@
 {% extends 'layout.html'%}
 {% load static %}
 {% block contenido %}
-    <link rel="stylesheet" type="text/css" href='{% static "css/style_layout.css"%}'>
-    <div class="banner">
-        <div class="logo">
-            <img id="LogoPagina" src='{% static "css/images/logo.png"%}' alt="LogoFSN">
-        </div>
-        <h1 class="tittle" data-text="bannerPrincipal"><i class="fa fa-futbol-o"></i>Bienvenido a FutbolScoutNet.com!</h1>
+<div class="banner" style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; background-color: #222222; color: white;">
+    <div class="logo">
+        <img id="LogoPagina" src='{% static "css/images/logo.png"%}' alt="LogoFSN">
     </div>
-    <div class="banner-buttons">
-        <a class="news-button" href="/feed/">Accede a las últimas publicaciones</a>
-        <a class="news-button" href="/listado-perfiles/">Lista de Perfiles</a>
+    <div style="display: flex; flex-direction: row; align-items: center; gap: 10px; margin-top: 20px;">
+        <button type="button" class="btn btn-primary" onclick="window.location.href='/feed/'">Accede a las últimas publicaciones</button>
+        <button type="button" class="btn btn-primary" onclick="window.location.href='/listado-perfiles'">Lista de Perfiles</button>
     </div>
+</div>
 {% endblock %}

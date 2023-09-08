@@ -3,16 +3,15 @@
 
 {% block content %}
 {% load static %}
-<link rel="stylesheet" type="text/css" href='{% static "css/style_register.css"%}'>
-  <div class="register-container">
-    <h2>Regístrese</h2>
-    <form method="post" class="register-form">
+<fieldset>
+  <legend>Regístrese</legend>
+  <form method="post" class="register-form">
       {% csrf_token %}
       {{ form_registro.as_p }}
-      <button type="submit">Enviar</button>
+      <button type="submit" class="btn btn-primary">Submit</button>
       <div class="login-link">
         <p>¿Ya tienes una cuenta? <a href="/accounts/login/">Ingresa aquí</a></p>
       </div>
     </form>
-  </div>
+</fieldset>
 {% endblock %}
