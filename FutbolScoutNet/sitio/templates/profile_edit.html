@@ -4,12 +4,19 @@
 {% block title %}Editar Perfil{% endblock %}
 
 {% block content %}
-<div class="register-container">
-    <h2 class="form-title">Editar Perfil</h2>
-    <form method="post" class="register-form" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Guardar cambios</button>
-    </form>
+<div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
+    <div class="card text-white bg-primary mb-3" style="border: 2px solid white;">
+        <h2 class="text-center">Editar Perfil</h2>
+        <div class="card-header text-center"></div>
+        <form method="post" class="register-form" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class="card-header text-center display-4"></div>
+                <div class="text-center mt-3">
+                  <button type="submit" class="btn btn-dark">Guardar cambios</button>
+                </div>
+            </div>
+        </form>
+    </div>
 </div>
 {% endblock %}

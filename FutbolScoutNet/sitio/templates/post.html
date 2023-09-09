@@ -3,12 +3,21 @@
 
 {% block content %}
 {% load static %}
-  <div class="create-post-container">
-    <h2>Cargue los datos de la publicación</h2>
-    <form method="post" class="create-post-form" enctype="multipart/form-data">
-      {% csrf_token %}
-      {{ form_post.as_p }}
-      <button type="submit">Enviar</button>
-    </form>
-  </div>
+  <div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
+    <div class="card text-white bg-primary mb-3" style="border: 2px solid white;">
+        <h2 class="text-center">Cargue los datos de la publicación</h2>
+        <div class="card-header text-center"></div>
+        <div class="card-body">
+            <form method="post" class="post-form" style="margin-left: 50px;">
+                {% csrf_token %}
+                {{ form_post.as_p }}
+                <div class="card-header text-center display-4"></div>
+                <div class="text-center mt-3">
+                  <button type="submit" class="btn btn-dark btn-block">Enviar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 {% endblock %}
