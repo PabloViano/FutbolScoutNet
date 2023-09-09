@@ -50,9 +50,9 @@
             <div style="margin-top: 10px;"></div>
 
             <div class="card text-white bg-primary mb-3" style="max-width: 100rem; border: 2px solid white;">
-                <div class="card-body" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px;">
+                <div class="card-body" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; background-color: #25509a;">
                     {% for perfil in lista_perfiles %}
-                    <div class="perfil-card" style="max-width: 25rem; border-radius: 8px; box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2), -5px -5px 15px rgba(255, 255, 255, 0.1); padding: 15px; display: flex; align-items: center; border: 2px solid white;">
+                    <div class="perfil-card" style="background-color: rgb(69, 130, 236); max-width: 25rem; border-radius: 8px; box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2), -5px -5px 15px rgba(255, 255, 255, 0.1); padding: 15px; display: flex; align-items: center; border: 2px solid white;">
                         <div class="card-body">
                             <div class="user-image">
                                 <img class="rounded-circle" style="width: 100px; height: 100px; object-fit: cover; border: 2px solid white;" src="{{perfil.image.url}}">
