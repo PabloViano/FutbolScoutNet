@@ -2,50 +2,69 @@
 {% load static %}
 {% block contenido %}
 <body>
+    <div style="margin-top: 10px;"></div>
     <div class="feed-container">
         <div class="content">
-            <div class="filter-container">
-                <form method="get">
-                    <label for="edad_min">Edad Mínima:</label>
-                    <input type="number" name="edad_min" id="edad_min" min="1" max="100" value="{{ request.GET.edad_min }}">
+            <form method="get" class="filter-container inline-form">
+                <div class="d-flex flex-row">
+                    <div class="form-group col-md-2 mx-2">
+                        <label for="edad_min">Edad Mínima:</label>
+                        <input type="number" class="form-control" name="edad_min" id="edad_min" min="1" max="100" value="{{ request.GET.edad_min }}">
+                    </div>
 
-                    <label for="edad_max">Edad Máxima:</label>
-                    <input type="number" name="edad_max" id="edad_max" min="1" max="100" value="{{ request.GET.edad_max }}">
-                    
-                    <label for="nivel">Filtrar por nivel:</label>
-                    <select name="nivel" id="nivel">
-                        <option value="">Todos</option>
-                        {% for nivel_obj in niveles %}
-                            <option value="{{ nivel_obj.nombre }}" {% if nivel_obj.nombre == request.GET.nivel %}selected{% endif %}>{{ nivel_obj.nombre }}</option>
-                        {% endfor %}
-                    </select>
+                    <div class="form-group col-md-2 mx-2">
+                        <label for="edad_max">Edad Máxima:</label>
+                        <input type="number" class="form-control" name="edad_max" id="edad_max" min="1" max="100" value="{{ request.GET.edad_max }}">
+                    </div>
 
-                    <label for="posicion">Filtrar por posición:</label>
-                    <select name="posicion" id="posicion">
-                        <option value="">Todas</option>
-                        {% for posicion_obj in posiciones %}
-                            <option value="{{ posicion_obj.nombre }}" {% if posicion_obj.nombre == request.GET.posicion %}selected{% endif %}>{{ posicion_obj.nombre }}</option>
-                        {% endfor %}
-                    </select>
+                    <div class="form-group col-md-2 mx-2">
+                        <label for="nivel">Filtrar por nivel:</label>
+                        <select class="form-control" name="nivel" id="nivel">
+                            <option value="">Todos</option>
+                            {% for nivel_obj in niveles %}
+                                <option value="{{ nivel_obj.nombre }}" {% if nivel_obj.nombre == request.GET.nivel %}selected{% endif %}>{{ nivel_obj.nombre }}</option>
+                            {% endfor %}
+                        </select>
+                        <i class="bi bi-chevron-down"></i>
+                    </div>
 
-                    <button type="submit">Aplicar Filtros</button>
-                </form>
-            </div>
+                    <div class="form-group col-md-2 mx-2">
+                        <label for="posicion">Filtrar por posición:</label>
+                        <select class="form-control" name="posicion" id="posicion">
+                            <option value="">Todas</option>
+                            {% for posicion_obj in posiciones %}
+                                <option value="{{ posicion_obj.nombre }}" {% if posicion_obj.nombre == request.GET.posicion %}selected{% endif %}>{{ posicion_obj.nombre }}</option>
+                            {% endfor %}
+                        </select>
+                        <i class="bi bi-chevron-down"></i>
+                    </div>
 
-            <div class="feed-container" id="inicio-content">
-                <div class="lista-perfiles">
+                    <div class="form-group col-md-2 mx-2 align-self-end">
+                        <button type="submit" class="btn btn-primary">Aplicar Filtros</button>
+                    </div>
+
+                </div>
+
+            </form>
+
+            <div style="margin-top: 10px;"></div>
+
+            <div class="card text-white bg-primary mb-3" style="max-width: 100rem; border: 2px solid white;">
+                <div class="card-body" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px;">
                     {% for perfil in lista_perfiles %}
-                        <div class="perfil">
+                    <div class="perfil-card" style="max-width: 25rem; border-radius: 8px; box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2), -5px -5px 15px rgba(255, 255, 255, 0.1); padding: 15px; display: flex; align-items: center; border: 2px solid white;">
+                        <div class="card-body">
                             <div class="user-image">
-                                <img src="{{perfil.image.url}}">
+                                <img class="rounded-circle" style="width: 100px; height: 100px; object-fit: cover; border: 2px solid white;" src="{{perfil.image.url}}">
                             </div>
                             <div class="datos-perfil">
-                                <h3 class="perfil-user">Usuario: <a href="/profile/{{perfil.user}}">{{perfil.user}}</a></h3>
-                                <h3 class="perfil-user">Posicion: {{perfil.posicion}}</h3>
-                                <h3 class="perfil-user">Nivel: {{perfil.nivel}}</h3>
-                                <h3 class="perfil-user">Edad: {{perfil.edad}}</h3>
+                                <h3 class="perfil-user" style="font-size: 20px;">Usuario: <a href="/profile/{{perfil.user}}" style="color: white;">{{perfil.user}}</a></h3>
+                                <h3 class="perfil-user" style="font-size: 20px;">Posicion: {{perfil.posicion}}</h3>
+                                <h3 class="perfil-user" style="font-size: 20px;">Nivel: {{perfil.nivel}}</h3>
+                                <h3 class="perfil-user" style="font-size: 20px;">Edad: {{perfil.edad}}</h3>
                             </div>
                         </div>
+                    </div>
                     {% endfor %}
                 </div>
             </div>
