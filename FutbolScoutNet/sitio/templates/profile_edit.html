@@ -8,15 +8,28 @@
     <div class="card text-white bg-primary mb-3" style="border: 2px solid white;">
         <h2 class="text-center">Editar Perfil</h2>
         <div class="card-header text-center"></div>
-        <form method="post" class="register-form" enctype="multipart/form-data">
+        <form method="post" class="register-form" enctype="multipart/form-data" id="profile-edit-form">
             {% csrf_token %}
             {{ form.as_p }}
             <div class="card-header text-center display-4"></div>
                 <div class="text-center mt-3">
+                  <button type="button" class="btn btn-dark btn-block" id="cancel-button">Cancelar</button>
                   <button type="submit" class="btn btn-dark">Guardar cambios</button>
                 </div>
-            </div>
+            <div style="margin-top: 10px;"></div>
         </form>
     </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const cancelButton = document.getElementById('cancel-button');
+        const postForm = document.getElementById('profile-edit-form');
+        cancelButton.addEventListener('click', function () {
+            postForm.style.display = 'none';
+            window.location.href='/profile/{{user}}';
+        });
+    });
+</script>
+
 {% endblock %}
