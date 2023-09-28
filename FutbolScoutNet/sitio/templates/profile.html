@@ -12,7 +12,13 @@
     <div style="margin-top: auto;">
         {% if user == request.user %}
             <button type="button" class="btn btn-primary" onclick="window.location.href='/profile-edit/{{user}}'">Editar Perfil</button>
-        {% endif %}
+        {% else %}
+            {% if user not in request.user.profile.following %}
+              <button type="button" class="btn btn-primary" onclick="window.location.href='/follow/{{user}}'">Follow</button>
+            {% else %}
+              <button type="button" class="btn btn-primary" onclick="window.location.href='/unfollow/{{user}}'">Unfollow</button>
+            {% endif%}
+        {% endif%}
     </div>
 </div>
 
@@ -41,5 +47,4 @@
       {% endfor %}
   </div>
 </div>
-
 {% endblock %}

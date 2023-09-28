@@ -132,7 +132,7 @@ def unfollow(request, username):
     current_user = request.user
     to_user = User.objects.get(username = username)
     to_user_id = to_user
-    rel = Relationship.objects.filter(from_user = current_user.id, to_user=to_user_id).get
+    rel = Relationship.objects.filter(from_user = current_user.id, to_user=to_user_id).get()
     rel.delete()
     return redirect('home')
 
