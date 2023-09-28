@@ -32,6 +32,8 @@ urlpatterns = [
     path('registro/', views.registro),
     path('profile/<str:username>/', views.profile, name='profile'),
     path('listado-perfiles/', views.listado_perfiles),
+    path('follow/<str:username>/', views.follow, name="follow"),
+    path('unfollow/<str:username>/', views.unfollow, name="unfollow"),
     path('profile-edit/<str:username>/', views.profile_edit),
     path('activate/<uidb64>/<token>', views.activate, name='activate')
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

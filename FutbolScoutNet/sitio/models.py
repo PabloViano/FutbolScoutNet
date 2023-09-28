@@ -20,6 +20,26 @@ class Profile(models.Model):
     nivel = models.ForeignKey(Nivel, on_delete=models.CASCADE, null=True, blank=True)
     edad = models.IntegerField(null=True, blank=True)
 
+    def __str__(self):
+        return f'Perfil de {self.user.username}'
+    
+    def following(self):
+        user_ids = Relationship.objects.filter(from_user=self.user)\
+            .values_list('to_user_id', flat=True)
+        return User.objects.filter(id__in=user_ids)
+        
+    def followers(self):
+        user_ids = Relationship.objects.filter(to_user=self.user)\
+            .values_list('from_user_id', flat=True)
+        return User.objects.filter(id__in=user_ids)
+
+class Relationship(models.Model):
+    from_user = models.ForeignKey(User,related_name='relationships',on_delete=models.CASCADE,null = True, blank = True)
+    to_user = models.ForeignKey(User, related_name='related_to', on_delete=models.CASCADE,null = True, blank = True)
+
+    def __str__(self) -> str:
+        return f'{self.from_user} to {self.to_user}'
+
 class Post(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='posts',null = True, blank = True)
     titulo = models.CharField(max_length=50)

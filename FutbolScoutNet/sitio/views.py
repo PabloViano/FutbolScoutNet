@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
 from django.contrib import messages
 from sitio.forms import FormPost, UserRegistrationForm, ProfileEditForm
-from sitio.models import Post, Profile, User, Posicion, Nivel
+from sitio.models import *
 from django.contrib.sites.shortcuts import get_current_site
 from django.template.loader import render_to_string
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
@@ -117,6 +117,24 @@ def listado_perfiles(request):
         perfiles = perfiles.filter(posicion__nombre=posicion)
 
     return render(request, 'listado_perfiles.html', {'lista_perfiles': perfiles, 'user': request.user, 'niveles':niveles, 'posiciones':posiciones})
+
+@login_required
+def follow(request, username):
+    current_user = request.user
+    to_user = User.objects.get(username = username)
+    to_user_id = to_user
+    rel = Relationship(from_user=current_user, to_user=to_user_id)
+    rel.save()
+    return redirect('home')
+
+@login_required
+def unfollow(request, username):
+    current_user = request.user
+    to_user = User.objects.get(username = username)
+    to_user_id = to_user
+    rel = Relationship.objects.filter(from_user = current_user.id, to_user=to_user_id).get
+    rel.delete()
+    return redirect('home')
 
 #EMIAL CONFIRMATION
 
