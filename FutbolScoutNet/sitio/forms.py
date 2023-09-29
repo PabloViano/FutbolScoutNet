@@ -18,10 +18,7 @@ class UserRegistrationForm(UserCreationForm):
 class FormPost(forms.ModelForm):
     class Meta:
        model = Post
-       fields = ['titulo', 'texto', 'fecha', 'multimedia','video','verificado']
-       widgets = {
-           'fecha': forms.DateInput(attrs={'type': 'date'})
-       }
+       fields = ['titulo', 'texto', 'multimedia','video','verificado']
 
 class ProfileEditForm(forms.ModelForm):
     class Meta:

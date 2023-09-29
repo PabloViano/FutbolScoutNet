@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 import boto3
@@ -37,7 +38,7 @@ class Relationship(models.Model):
     from_user = models.ForeignKey(User,related_name='relationships',on_delete=models.CASCADE)
     to_user = models.ForeignKey(User, related_name='related_to', on_delete=models.CASCADE)
 
-    def __str__(self) -> str:
+    def __str__(self):
         return f'{self.from_user} to {self.to_user}'
     
     class Meta:
@@ -45,14 +46,24 @@ class Relationship(models.Model):
             models.Index(fields=['from_user', 'to_user',]),
         ]
 
+class Comment(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user',null = True, blank = True)
+    post = models.ForeignKey(User, on_delete=models.CASCADE, related_name='post')
+    fecha = models.DateTimeField(default=timezone.now)
+    texto = models.CharField(max_length=500)
+
+    def __str__(self):
+        return f'Comentario del post {self.post.__str__} de {self.user.username}'
+
 class Post(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='posts',null = True, blank = True)
     titulo = models.CharField(max_length=50)
     texto = models.CharField(max_length=500)
-    fecha = models.DateTimeField()
+    fecha = models.DateTimeField(default=timezone.now)
     multimedia = models.ImageField(upload_to="UsersMultimedia",blank = True, null = True)
     video = models.FileField(upload_to="videos",blank = True,null = True)
     verificado = models.BooleanField(default=False)
+    comentarios = models.ForeignKey(Comment, on_delete=models.CASCADE, related_name='comment',null = True, blank = True)
 
     def __str__(self):
         if self.user:
