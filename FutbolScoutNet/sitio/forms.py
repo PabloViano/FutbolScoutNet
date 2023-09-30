@@ -1,6 +1,6 @@
 from django import forms
 from django.core.exceptions import ValidationError
-from sitio.models import Post, Profile
+from sitio.models import Post, Profile, Mensaje
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
@@ -24,3 +24,26 @@ class ProfileEditForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ['image', 'posicion', 'nivel', 'edad']
+
+from django import forms
+from .models import Mensaje
+
+class MensajeForm(forms.ModelForm):
+    class Meta:
+        model = Mensaje
+        fields = ['contenido']  # Ajusta según tus necesidades
+
+    def __init__(self, *args, emisor=None, receptor=None, **kwargs):
+        super(MensajeForm, self).__init__(*args, **kwargs)
+        self.emisor = emisor
+        self.receptor = receptor
+
+    def save(self, commit=True):
+        mensaje = super(MensajeForm, self).save(commit=False)
+        mensaje.emisor = self.emisor
+        mensaje.receptor = self.receptor
+
+        if commit:
+            mensaje.save()
+
+        return mensaje

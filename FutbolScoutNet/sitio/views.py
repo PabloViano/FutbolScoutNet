@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
 from django.contrib import messages
-from sitio.forms import FormPost, UserRegistrationForm, ProfileEditForm
+from sitio.forms import FormPost, UserRegistrationForm, ProfileEditForm, MensajeForm
 from sitio.models import *
 from django.contrib.sites.shortcuts import get_current_site
 from django.template.loader import render_to_string
@@ -172,3 +172,34 @@ def activateEmail(request, user, to_email):
                 received activation link to confirm and complete the registration. <b>Note:</b> Check your spam folder.')
     else:
         messages.error(request, f'Problem sending email to {to_email}, check if you typed it correctly.')
+
+
+@login_required
+def mensajes(request, username=None):
+    current_user = request.user
+
+    if username and username != current_user.username:
+        target_user = get_object_or_404(User, username=username)
+        mensajes_enviados = Mensaje.objects.filter(emisor=current_user, receptor=target_user)
+        mensajes_recibidos = Mensaje.objects.filter(emisor=target_user, receptor=current_user)
+    else:
+        target_user = current_user
+        mensajes_enviados = Mensaje.objects.filter(emisor=current_user)
+        mensajes_recibidos = Mensaje.objects.filter(receptor=current_user)
+
+    return render(request, 'mensajes.html', {'target_user': target_user, 'mensajes_enviados': mensajes_enviados, 'mensajes_recibidos': mensajes_recibidos})
+
+@login_required
+def enviar_mensaje(request, username=None):
+    current_user = get_object_or_404(User, pk=request.user.pk)
+    receptor = get_object_or_404(User, username=username)
+
+    if request.method == "POST":
+        form = MensajeForm(request.POST, emisor=current_user, receptor=receptor)
+        if form.is_valid():
+            form.save()
+            return redirect("/feed")  # Ajusta a tu URL correcta
+    else:
+        form = MensajeForm(emisor=current_user, receptor=receptor)
+
+    return render(request, 'enviar_mensaje.html', {'form': form})

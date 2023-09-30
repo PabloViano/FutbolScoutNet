@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}Enviar Mensaje{% endblock %}
+{% block content %}
+{% load static %}
+
+<div class="container mt-4">
+    <h2>Enviar Mensaje</h2>
+    <form method="post" class="mensaje-form" enctype="multipart/form-data" style="margin-left: 50px;">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary mt-3">Enviar</button>
+    </form>
+</div>
+
+{% endblock %}

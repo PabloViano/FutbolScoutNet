@@ -35,5 +35,7 @@ urlpatterns = [
     path('follow/<str:username>/', views.follow, name="follow"),
     path('unfollow/<str:username>/', views.unfollow, name="unfollow"),
     path('profile-edit/<str:username>/', views.profile_edit),
-    path('activate/<uidb64>/<token>', views.activate, name='activate')
+    path('activate/<uidb64>/<token>', views.activate, name='activate'),
+    path('mensajes/<str:username>/', views.mensajes, name='mensajes'),
+    path('enviar-mensaje/<str:username>/', views.enviar_mensaje, name='enviar_mensaje')
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

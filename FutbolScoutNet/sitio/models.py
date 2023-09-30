@@ -56,14 +56,14 @@ class Comment(models.Model):
         return f'Comentario del post {self.post.__str__} de {self.user.username}'
 
 class Post(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='posts',null = True, blank = True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='posts', null=True, blank=True)
     titulo = models.CharField(max_length=50)
     texto = models.CharField(max_length=500)
     fecha = models.DateTimeField(default=timezone.now)
-    multimedia = models.ImageField(upload_to="UsersMultimedia",blank = True, null = True)
-    video = models.FileField(upload_to="videos",blank = True,null = True)
+    multimedia = models.ImageField(upload_to="UsersMultimedia", blank=True, null=True)
+    video = models.FileField(upload_to="videos", blank=True, null=True)
     verificado = models.BooleanField(default=False)
-    comentarios = models.ForeignKey(Comment, on_delete=models.CASCADE, related_name='comment',null = True, blank = True)
+    comentarios = models.ForeignKey(Comment, on_delete=models.CASCADE, related_name='comment', null=True, blank=True)
 
     def __str__(self):
         if self.user:
@@ -74,5 +74,11 @@ class Post(models.Model):
 def create_profile(sender, instance, created, **kwargs):
     if created:
         Profile.objects.create(user=instance)
-        
+
 post_save.connect(create_profile, sender=User)
+
+class Mensaje(models.Model):
+    emisor = models.ForeignKey(User, on_delete=models.CASCADE, related_name='mensajes_enviados', null=True, blank=True)
+    receptor = models.ForeignKey(User, on_delete=models.CASCADE, related_name='mensajes_recibidos', null=True, blank=True)
+    contenido = models.CharField(max_length=500)
+    fecha = models.DateTimeField(default=timezone.now)
