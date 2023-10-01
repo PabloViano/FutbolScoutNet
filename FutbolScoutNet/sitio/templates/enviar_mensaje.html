@@ -27,7 +27,7 @@
         const postForm = document.getElementById('post-form');
         cancelButton.addEventListener('click', function () {
             postForm.style.display = 'none';
-            window.location.href = '/feed';
+            window.location.href = '/profile/{{receptor.username}}';
         });
     });
 </script>

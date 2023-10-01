@@ -210,4 +210,4 @@ def enviar_mensaje(request, username=None):
     else:
         form = MensajeForm(emisor=current_user, receptor=receptor)
 
-    return render(request, 'enviar_mensaje.html', {'form': form})
+    return render(request, 'enviar_mensaje.html', {'form': form, 'receptor':receptor})
