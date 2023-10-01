@@ -5,7 +5,7 @@
 <body>
     <div style="margin-top: 10px;"></div>
     <div class="container">
-        <h1 class="display-4">Últimas Publicaciones</h1>
+        <h1 class="display-4">Feed</h1>
         <div class="row">
             <div class="col-md-6">
                 <a href="/publicacion" class="btn btn-primary">Crear Publicación</a>
@@ -15,37 +15,93 @@
         <div style="margin-top: 10px;"></div>
         <div class="card text-white mb-3" style="max-width: 100rem; border: 2px solid white; margin: 10px; background-color: #25509a;">
             <div class="card-body">
-                {% for post in lista_posts %}
-                <div class="card text-white bg-primary mb-3" style="border: 2px solid white;">
-                    <div class="card-body">
-                        <div class="user-content">
-                            <div class="user-image">
-                                <img class="rounded-circle" style="width: 100px; height: 100px; object-fit: cover; border: 2px solid white; float: left; margin-right: 10px;" src="{{post.user.profile_set.get.image.url}}">
+                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                  <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked="">
+                  <label class="btn btn-outline-primary" for="btnradio1">Para Ti</label>
+                  <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+                  <label class="btn btn-outline-primary" for="btnradio2">Seguidos</label>
+                </div>
+                <div id="para-ti-section">
+                    <div style="margin-top: 10px;"></div>
+                    {% for post in all_posts %}
+                    <div class="card text-white bg-primary mb-3" style="border: 2px solid white;">
+                        <div class="card-body">
+                            <div class="user-content">
+                                <div class="user-image">
+                                    <img class="rounded-circle" style="width: 100px; height: 100px; object-fit: cover; border: 2px solid white; float: left; margin-right: 10px;" src="{{post.user.profile_set.get.image.url}}">
+                                </div>
+                                <div class="user-info" style="float: left; margin-top: 30px;">
+                                    <h3 class="post-user">Usuario: <a href="/profile/{{post.user}}" style="color: white;">{{post.user}}</a></h3>
+                                </div>
+                                <div style="clear: both;"></div>
                             </div>
-                            <div class="user-info" style="float: left; margin-top: 30px;">
-                                <h3 class="post-user">Usuario: <a href="/profile/{{post.user}}" style="color: white;">{{post.user}}</a></h3>
+                            <div style="margin-top: 10px;"></div>
+                            <div class="post-content" enctype="multipart/form-data".>
+                                <h3 class="post-title">{{ post.titulo }}</h3>
+                                <p class="post-date">{{ post.fecha }}</p>
+                                <p class="post-text">{{ post.texto }}</p>
+                                {% if post.multimedia %}
+                                <img class="post-multimedia" src="{{MEDIA_URL}}{{post.multimedia.url}}" width="250" height="250">
+                                {% endif %}
+                                {% if post.video %}
+                                <video class="post-video" src="{{MEDIA_URL}}{{post.video.url}}" width="250" height="250" controls>
+                                {% endif %}
                             </div>
-                            <div style="clear: both;"></div>
-                        </div>
-                        <div style="margin-top: 10px;"></div>
-                        <div class="post-content" enctype="multipart/form-data".>
-                            <h3 class="post-title">{{ post.titulo }}</h3>
-                            <p class="post-date">{{ post.fecha }}</p>
-                            <p class="post-text">{{ post.texto }}</p>
-                            {% if post.multimedia %}
-                            <img class="post-multimedia" src="{{MEDIA_URL}}{{post.multimedia.url}}" width="250" height="250">
-                            {% endif %}
-                            {% if post.video %}
-                            <video class="post-video" src="{{MEDIA_URL}}{{post.video.url}}" width="250" height="250" controls>
-                            {% endif %}
                         </div>
                     </div>
+                    {% endfor %}
                 </div>
-                {% endfor %}
+                <div id="seguidos-section" style="display: none;">
+                    <div style="margin-top: 10px;"></div>
+                     {% for post in followed_posts %}
+                        <div class="card text-white bg-primary mb-3" style="border: 2px solid white;">
+                            <div class="card-body">
+                                <div class="user-content">
+                                    <div class="user-image">
+                                        <img class="rounded-circle" style="width: 100px; height: 100px; object-fit: cover; border: 2px solid white; float: left; margin-right: 10px;" src="{{post.user.profile_set.get.image.url}}">
+                                    </div>
+                                    <div class="user-info" style="float: left; margin-top: 30px;">
+                                        <h3 class="post-user">Usuario: <a href="/profile/{{post.user}}" style="color: white;">{{post.user}}</a></h3>
+                                    </div>
+                                    <div style="clear: both;"></div>
+                                </div>
+                                <div style="margin-top: 10px;"></div>
+                                <div class="post-content" enctype="multipart/form-data".>
+                                    <h3 class="post-title">{{ post.titulo }}</h3>
+                                    <p class="post-date">{{ post.fecha }}</p>
+                                    <p class="post-text">{{ post.texto }}</p>
+                                    {% if post.multimedia %}
+                                    <img class="post-multimedia" src="{{MEDIA_URL}}{{post.multimedia.url}}" width="250" height="250">
+                                    {% endif %}
+                                    {% if post.video %}
+                                    <video class="post-video" src="{{MEDIA_URL}}{{post.video.url}}" width="250" height="250" controls>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                </div>
             </div>
         </div>
-
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const paraTiSection = document.getElementById('para-ti-section');
+            const seguidosSection = document.getElementById('seguidos-section');
+
+            document.querySelectorAll('.btn-check').forEach(function (btn) {
+                btn.addEventListener('change', function () {
+                    if (btn.id === 'btnradio1') {
+                        paraTiSection.style.display = 'block';
+                        seguidosSection.style.display = 'none';
+                    } else if (btn.id === 'btnradio2') {
+                        paraTiSection.style.display = 'none';
+                        seguidosSection.style.display = 'block';
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 {% endblock %}
-

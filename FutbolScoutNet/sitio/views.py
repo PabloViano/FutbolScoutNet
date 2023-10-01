@@ -60,8 +60,16 @@ def form_post(request):
 
 @login_required
 def feed(request):
-    posts = Post.objects.order_by("-fecha")
-    return render(request, 'feed.html',{'lista_posts': posts})
+    current_user = request.user
+
+    # Obtener las publicaciones de los usuarios seguidos
+    followed_users = Relationship.objects.filter(from_user=current_user)
+    followed_posts = Post.objects.filter(user__in=followed_users.values('to_user'))
+
+    # Obtener todas las publicaciones, incluyendo las del propio usuario
+    all_posts = Post.objects.all()
+
+    return render(request, 'feed.html', {'followed_posts': followed_posts, 'all_posts': all_posts})
 
 @login_required
 def profile(request, username=None):
