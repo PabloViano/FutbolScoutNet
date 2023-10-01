@@ -1,15 +1,35 @@
 {% extends 'base.html' %}
-{% block title %}Enviar Mensaje{% endblock %}
+{% block title %}Enviar mensaje{% endblock %}
+
 {% block content %}
 {% load static %}
-
-<div class="container mt-4">
-    <h2>Enviar Mensaje</h2>
-    <form method="post" class="mensaje-form" enctype="multipart/form-data" style="margin-left: 50px;">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-primary mt-3">Enviar</button>
-    </form>
+<div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
+    <div class="card text-white bg-primary mb-3" style="border: 2px solid white;">
+        <h2 class="text-center">Cargue los datos del mensaje</h2>
+        <div class="card-header text-center"></div>
+        <div class="card-body">
+            <form method="post" class="post-form" enctype="multipart/form-data" style="margin-left: 50px;" id="post-form">
+                {% csrf_token %}
+                {{ form.as_p}}
+                <div class="card-header text-center display-4"></div>
+                <div class="text-center mt-3">
+                    <button type="button" class="btn btn-dark btn-block" id="cancel-button">Cancelar</button>
+                    <button type="submit" class="btn btn-dark btn-block">Enviar</button>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const cancelButton = document.getElementById('cancel-button');
+        const postForm = document.getElementById('post-form');
+        cancelButton.addEventListener('click', function () {
+            postForm.style.display = 'none';
+            window.location.href = '/feed';
+        });
+    });
+</script>
 
 {% endblock %}

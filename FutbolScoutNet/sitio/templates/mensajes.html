@@ -1,20 +1,36 @@
-{% extends 'base.html' %}
-{% block title %}Mensajes de {{ target_user.username }}{% endblock %}
+{% extends 'layout.html' %}
+{% load static %}
+{% block contenido %}
 
-{% block content %}
-    <h2>Mensajes de {{ target_user.username }}</h2>
+     <div class="card text-white mb-3" style="max-width: 100rem; border: 2px solid white; margin: 10px; background-color: #25509a;">
+            <h1> Mensajes recibidos</h1>
+            <div class="card-body">
+                <div style="margin-top: 10px;"></div>
+                {% for mensaje in mensajes_recibidos %}
+                    <div class="card text-white bg-primary mb-3" style="border: 2px solid white;">
+                        <div class="card-body">
+                            <li>{{ mensaje.contenido }} - Enviado por: <a href="/profile/{{mensaje.receptor.username}}" style="color: white;">{{mensaje.receptor.username}}</a> </li>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+     </div>
 
-    <h3>Mensajes Enviados</h3>
-    <ul>
-        {% for mensaje in mensajes_enviados %}
-            <li>{{ mensaje.contenido }} - Enviado a: {{ mensaje.receptor.username }}</li>
-        {% endfor %}
-    </ul>
+    <div style="margin-top: 10px;"></div>
 
-    <h3>Mensajes Recibidos</h3>
-    <ul>
-        {% for mensaje in mensajes_recibidos %}
-            <li>{{ mensaje.contenido }} - Enviado por: {{ mensaje.emisor.username }}</li>
-        {% endfor %}
-    </ul>
+    <div class="card text-white mb-3" style="max-width: 100rem; border: 2px solid white; margin: 10px; background-color: #25509a;">
+        <h1> Mensajes enviados</h1>
+        <div class="card-body">
+            <div style="margin-top: 10px;"></div>
+            {% for mensaje in mensajes_enviados %}
+                <div class="card text-white bg-primary mb-3" style="border: 2px solid white;">
+                    <div class="card-body">
+                        <li>{{ mensaje.contenido }} - Enviado a: <a href="/profile/{{mensaje.receptor.username}}" style="color: white;">{{mensaje.receptor.username}}</a> </li></li>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
 {% endblock %}
