@@ -59,14 +59,18 @@ def form_post(request):
     return render(request, 'post.html', {'form_post': form})
 
 def feed(request):
-    current_user = request.user
+    if(request.user.is_anonymous):
+        all_posts = Post.objects.all()
+        followed_posts = None
+    else:
+        current_user = request.user
 
-    # Obtener las publicaciones de los usuarios seguidos
-    followed_users = Relationship.objects.filter(from_user=current_user)
-    followed_posts = Post.objects.filter(user__in=followed_users.values('to_user'))
+        # Obtener las publicaciones de los usuarios seguidos
+        followed_users = Relationship.objects.filter(from_user=current_user)
+        followed_posts = Post.objects.filter(user__in=followed_users.values('to_user'))
 
-    # Obtener todas las publicaciones, incluyendo las del propio usuario
-    all_posts = Post.objects.all()
+        # Obtener todas las publicaciones, incluyendo las del propio usuario
+        all_posts = Post.objects.all()
 
     return render(request, 'feed.html', {'followed_posts': followed_posts, 'all_posts': all_posts})
 
