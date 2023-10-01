@@ -58,7 +58,6 @@ def form_post(request):
 
     return render(request, 'post.html', {'form_post': form})
 
-@login_required
 def feed(request):
     current_user = request.user
 
