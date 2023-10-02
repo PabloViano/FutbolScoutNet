@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
 from django.contrib import messages
-from sitio.forms import FormPost, UserRegistrationForm, ProfileEditForm, MensajeForm
+from sitio.forms import *
 from sitio.models import *
 from django.contrib.sites.shortcuts import get_current_site
 from django.template.loader import render_to_string
@@ -59,20 +59,20 @@ def form_post(request):
     return render(request, 'post.html', {'form_post': form})
 
 def feed(request):
-    if(request.user.is_anonymous):
+    if request.user.is_anonymous:
         all_posts = Post.objects.all()
         followed_posts = None
     else:
         current_user = request.user
 
-        # Obtener las publicaciones de los usuarios seguidos
         followed_users = Relationship.objects.filter(from_user=current_user)
         followed_posts = Post.objects.filter(user__in=followed_users.values('to_user'))
-
-        # Obtener todas las publicaciones, incluyendo las del propio usuario
         all_posts = Post.objects.all()
 
-    return render(request, 'feed.html', {'followed_posts': followed_posts, 'all_posts': all_posts})
+        # Obtener los comentarios para todas las publicaciones
+        comments = Comment.objects.filter(post__in=all_posts)
+
+    return render(request, 'feed.html', {'followed_posts': followed_posts, 'all_posts': all_posts, 'comments': comments})
 
 @login_required
 def profile(request, username=None):
@@ -216,3 +216,20 @@ def enviar_mensaje(request, username=None):
         form = MensajeForm(emisor=current_user, receptor=receptor)
 
     return render(request, 'enviar_mensaje.html', {'form': form, 'receptor':receptor})
+
+def form_comment(request, post_id):
+    current_user = get_object_or_404(User, pk=request.user.pk)
+    post = get_object_or_404(Post, pk=post_id)
+
+    if request.method == "POST":
+        form = FormComment(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.user = current_user
+            comment.post = post  # Asociar el comentario al post correspondiente
+            form.save()
+            return redirect("/feed")
+    else:
+        form = FormComment()
+
+    return render(request, 'comment.html', {'form_comment': form})

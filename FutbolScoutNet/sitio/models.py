@@ -48,7 +48,7 @@ class Relationship(models.Model):
 
 class Comment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user',null = True, blank = True)
-    post = models.ForeignKey(User, on_delete=models.CASCADE, related_name='post')
+    post = models.ForeignKey('Post', on_delete=models.DO_NOTHING, related_name='comments',null = True, blank = True)
     fecha = models.DateTimeField(default=timezone.now)
     texto = models.CharField(max_length=500)
 
@@ -63,7 +63,9 @@ class Post(models.Model):
     multimedia = models.ImageField(upload_to="UsersMultimedia", blank=True, null=True)
     video = models.FileField(upload_to="videos", blank=True, null=True)
     verificado = models.BooleanField(default=False)
-    comentarios = models.ForeignKey(Comment, on_delete=models.CASCADE, related_name='comment', null=True, blank=True)
+
+    def get_comments(self):
+        return Comment.objects.filter(post=self)
 
     def __str__(self):
         if self.user:

@@ -37,5 +37,6 @@ urlpatterns = [
     path('profile-edit/<str:username>/', views.profile_edit),
     path('activate/<uidb64>/<token>', views.activate, name='activate'),
     path('mensajes/<str:username>/', views.mensajes, name='mensajes'),
-    path('enviar-mensaje/<str:username>/', views.enviar_mensaje, name='enviar_mensaje')
+    path('enviar-mensaje/<str:username>/', views.enviar_mensaje, name='enviar_mensaje'),
+    path('add_comment/<int:post_id>/', views.form_comment, name='add_comment'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,6 +1,6 @@
 from django import forms
 from django.core.exceptions import ValidationError
-from sitio.models import Post, Profile, Mensaje
+from sitio.models import *
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
@@ -19,6 +19,11 @@ class FormPost(forms.ModelForm):
     class Meta:
        model = Post
        fields = ['titulo', 'texto', 'multimedia','video','verificado']
+
+class FormComment(forms.ModelForm):
+    class Meta:
+       model = Comment
+       fields = ['texto']   
 
 class ProfileEditForm(forms.ModelForm):
     class Meta:
