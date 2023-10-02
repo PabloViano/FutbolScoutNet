@@ -24,7 +24,7 @@
                 <div id="para-ti-section">
                     <div style="margin-top: 10px;"></div>
                     {% for post in all_posts %}
-                    <div class="card text-white bg-primary mb-3" style="border: 2px solid white;">
+                    <div class="card text-white bg-primary mb-3" style="border: 2px solid white; ">
                         <div class="card-body">
                             <div class="user-content">
                                 <div class="user-image">
@@ -52,10 +52,9 @@
                             <!-- Bucle para mostrar los comentarios de la publicación actual -->
                             {% for comment in comments %}
                                 {% if comment.post == post %}
-                                <div class="card text-white bg-secondary mb-3" style="border: 2px solid white;">
-                                    <div class="card-body">
-                                        <p class="comment-user">Usuario: {{ comment.user.username }}</p>
-                                        <p class="comment-date">{{ comment.fecha }}</p>
+                                <div class="card text-white bg-secondary mb-3" style="border: 2px solid white; ">
+                                    <div class="card-body" style="background-color: #25509a;">
+                                        <p class="comment-title"> <b><a href="/profile/{{post.user}}" style="color: #a6a7a8;">{{comment.user}}</a></b> El {{ comment.fecha }} </p>
                                         <p class="comment-text">{{ comment.texto }}</p>
                                     </div>
                                 </div>

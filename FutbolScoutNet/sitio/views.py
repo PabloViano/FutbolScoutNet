@@ -62,6 +62,7 @@ def feed(request):
     if request.user.is_anonymous:
         all_posts = Post.objects.all()
         followed_posts = None
+        comments = Comment.objects.filter(post__in=all_posts)
     else:
         current_user = request.user
 
