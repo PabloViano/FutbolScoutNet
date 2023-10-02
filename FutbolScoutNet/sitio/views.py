@@ -219,6 +219,7 @@ def enviar_mensaje(request, username=None):
 
     return render(request, 'enviar_mensaje.html', {'form': form, 'receptor':receptor})
 
+@login_required
 def form_comment(request, post_id):
     current_user = get_object_or_404(User, pk=request.user.pk)
     post = get_object_or_404(Post, pk=post_id)
