@@ -46,9 +46,9 @@
                                 {% if post.video %}
                                 <video class="post-video" src="{{MEDIA_URL}}{{post.video.url}}" width="250" height="250" controls>
                                 {% endif %}
-                                <a href="{% url 'add_comment' post.id %}" class="btn btn-primary">Agregar Comentario</a>
                             </div>
                             <h4>Comentarios:</h4>
+                            <a href="{% url 'add_comment' post.id %}" class="btn btn-primary" style="background-color: #25509a; margin: 10px;";>Agregar Comentario</a>
                             <!-- Bucle para mostrar los comentarios de la publicación actual -->
                             {% for comment in comments %}
                                 {% if comment.post == post %}
