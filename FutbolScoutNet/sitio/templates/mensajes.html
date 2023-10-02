@@ -9,7 +9,7 @@
                 {% for mensaje in mensajes_recibidos %}
                     <div class="card text-white bg-primary mb-3" style="border: 2px solid white;">
                         <div class="card-body">
-                            <li>{{ mensaje.contenido }} - Enviado por: <a href="/profile/{{mensaje.receptor.username}}" style="color: white;">{{mensaje.receptor.username}}</a> </li>
+                            <li>{{ mensaje.contenido }} - Enviado por: <a href="/profile/{{mensaje.emisor.username}}" style="color: white;">{{mensaje.emisor.username}}</a> </li>
                         </div>
                     </div>
                     {% endfor %}
