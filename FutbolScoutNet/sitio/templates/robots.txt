@@ -1,0 +1,13 @@
+User-agent: *
+
+Disallow: /mensajes/*
+Disallow: /registro/
+Disallow: /accounts/*
+Disallow: /listado-perfiles/
+Disallow: /publicacion/
+Disallow: /add_comment/*
+
+Allow: /home/
+Allow: /feed/
+Allow: /profile/*
+

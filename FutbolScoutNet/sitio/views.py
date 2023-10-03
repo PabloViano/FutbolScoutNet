@@ -11,6 +11,7 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes, force_str
 from django.core.mail import EmailMessage
 from sitio.token import account_activation_token
+from django.views.decorators.http import require_GET
 
 def inicio(request):
     return render(request, 'inicio.html', {})
@@ -236,3 +237,7 @@ def form_comment(request, post_id):
         form = FormComment()
 
     return render(request, 'comment.html', {'form_comment': form})
+
+@require_GET
+def robots_txt(request):
+    return HttpResponse(content_type="text/plain")
