@@ -7,3 +7,4 @@ pillow==10.0.0
 boto3==1.28.42
 django-storages==1.13.2
 six
+haystack
