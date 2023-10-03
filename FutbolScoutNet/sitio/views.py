@@ -85,7 +85,8 @@ def profile(request, username=None):
         posts = current_user.posts.all()
         user = current_user
     profile = Profile.objects.get(user=user)
-    return render(request, 'profile.html', {'user':user, 'posts':posts, 'profile':profile})
+    followers = Relationship.objects.filter(to_user=User.objects.get(username=username)).count()
+    return render(request, 'profile.html', {'user':user, 'posts':posts, 'profile':profile, 'followers': followers})
 
 @login_required
 def profile_edit(request, username=None):
@@ -108,7 +109,7 @@ def profile_edit(request, username=None):
 
 @login_required
 def listado_perfiles(request):
-    perfiles = Profile.objects.all()
+    perfiles = Profile.objects.filter()
     niveles = Nivel.objects.all()
     posiciones = Posicion.objects.all()
 
@@ -218,6 +219,7 @@ def enviar_mensaje(request, username=None):
 
     return render(request, 'enviar_mensaje.html', {'form': form, 'receptor':receptor})
 
+@login_required
 def form_comment(request, post_id):
     current_user = get_object_or_404(User, pk=request.user.pk)
     post = get_object_or_404(Post, pk=post_id)
