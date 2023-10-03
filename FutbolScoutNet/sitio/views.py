@@ -61,15 +61,15 @@ def form_post(request):
 
 def feed(request):
     if request.user.is_anonymous:
-        all_posts = Post.objects.all()
+        all_posts = Post.objects.all().order_by('-fecha')
         followed_posts = None
         comments = Comment.objects.filter(post__in=all_posts)
     else:
         current_user = request.user
 
         followed_users = Relationship.objects.filter(from_user=current_user)
-        followed_posts = Post.objects.filter(user__in=followed_users.values('to_user'))
-        all_posts = Post.objects.all()
+        followed_posts = Post.objects.filter(user__in=followed_users.values('to_user')).order_by('-fecha')
+        all_posts = Post.objects.all().order_by('-fecha')
 
         # Obtener los comentarios para todas las publicaciones
         comments = Comment.objects.filter(post__in=all_posts)
