@@ -39,4 +39,5 @@ urlpatterns = [
     path('mensajes/<str:username>/', views.mensajes, name='mensajes'),
     path('enviar-mensaje/<str:username>/', views.enviar_mensaje, name='enviar_mensaje'),
     path('add_comment/<int:post_id>/', views.form_comment, name='add_comment'),
+    path('search/', include('haystack.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
