@@ -10,8 +10,18 @@
             <div class="col-md-6">
                 <a href="/publicacion" class="btn btn-primary">Crear Publicación</a>
             </div>
+            <div class="col-md-6">
+                <!-- Agregar el formulario de búsqueda -->
+                <form class="form-inline my-2 my-lg-0" method="GET">
+                    <div class="input-group">
+                        <input class="form-control" type="text" name="search" placeholder="Buscar" value="{{ request.GET.search }}">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="submit">Buscar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
-
         <div style="margin-top: 10px;"></div>
         <div class="card text-white mb-3" style="max-width: 100rem; border: 2px solid white; margin: 10px; background-color: #25509a;">
             <div class="card-body">
