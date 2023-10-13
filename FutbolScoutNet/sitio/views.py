@@ -12,6 +12,7 @@ from django.utils.encoding import force_bytes, force_str
 from django.core.mail import EmailMessage
 from sitio.token import account_activation_token
 from django.views.decorators.http import require_GET
+from haystack.query import SearchQuerySet
 
 def inicio(request):
     return render(request, 'inicio.html', {})
@@ -74,7 +75,23 @@ def feed(request):
         # Obtener los comentarios para todas las publicaciones
         comments = Comment.objects.filter(post__in=all_posts)
 
-    return render(request, 'feed.html', {'followed_posts': followed_posts, 'all_posts': all_posts, 'comments': comments})
+    # Verifica si se realizó una búsqueda
+    search_query = request.GET.get('search', '')
+
+    if search_query:
+        # Realiza una búsqueda utilizando Haystack
+        search_results = SearchQuerySet().filter(content=search_query)
+        search_posts = [result.object for result in search_results]
+    else:
+        search_posts = []
+
+    return render(request, 'feed.html', {
+        'followed_posts': followed_posts,
+        'all_posts': all_posts,
+        'search_posts': search_posts,  # Agrega los resultados de búsqueda a la plantilla
+        'comments': comments,
+        'search_query': search_query,  # Pasa la consulta de búsqueda a la plantilla
+    })
 
 @login_required
 def profile(request, username=None):
