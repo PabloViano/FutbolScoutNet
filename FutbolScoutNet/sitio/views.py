@@ -82,13 +82,18 @@ def feed(request):
         # Realiza una búsqueda utilizando Haystack
         search_results = SearchQuerySet().filter(content=search_query)
         search_posts = [result.object for result in search_results]
+        if not request.user.is_anonymous:
+            # Filtra los resultados de búsqueda para mostrar solo los posts seguidos
+            search_posts_followed = [post for post in search_posts if post in followed_posts]
     else:
         search_posts = []
+        search_posts_followed = []
 
     return render(request, 'feed.html', {
         'followed_posts': followed_posts,
         'all_posts': all_posts,
         'search_posts': search_posts,  # Agrega los resultados de búsqueda a la plantilla
+        'search_posts_followed': search_posts_followed,
         'comments': comments,
         'search_query': search_query,  # Pasa la consulta de búsqueda a la plantilla
     })
