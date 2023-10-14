@@ -30,25 +30,8 @@ class ProfileEditForm(forms.ModelForm):
         model = Profile
         fields = ['image', 'posicion', 'nivel', 'edad']
 
-from django import forms
-from .models import Mensaje
-
 class MensajeForm(forms.ModelForm):
     class Meta:
         model = Mensaje
-        fields = ['contenido']  # Ajusta según tus necesidades
+        fields = ['texto']
 
-    def __init__(self, *args, emisor=None, receptor=None, **kwargs):
-        super(MensajeForm, self).__init__(*args, **kwargs)
-        self.emisor = emisor
-        self.receptor = receptor
-
-    def save(self, commit=True):
-        mensaje = super(MensajeForm, self).save(commit=False)
-        mensaje.emisor = self.emisor
-        mensaje.receptor = self.receptor
-
-        if commit:
-            mensaje.save()
-
-        return mensaje

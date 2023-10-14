@@ -1,36 +1,23 @@
 {% extends 'layout.html' %}
-{% load static %}
 {% block contenido %}
+  {% if conversacion %}
+    <h2>Conversación con {{ conversacion.user_uno.username }} y {{ conversacion.user_dos.username }}</h2>
 
-     <div class="card text-white mb-3" style="max-width: 100rem; border: 2px solid white; margin: 10px; background-color: #25509a;">
-            <h1> Mensajes recibidos</h1>
-            <div class="card-body">
-                <div style="margin-top: 10px;"></div>
-                {% for mensaje in mensajes_recibidos %}
-                    <div class="card text-white bg-primary mb-3" style="border: 2px solid white;">
-                        <div class="card-body">
-                            <li>{{ mensaje.contenido }} - Enviado por: <a href="/profile/{{mensaje.emisor.username}}" style="color: white;">{{mensaje.emisor.username}}</a> </li>
-                        </div>
-                    </div>
-                    {% endfor %}
-                </div>
-            </div>
-     </div>
+    <!-- Lista de mensajes -->
+    <ul>
+      {% for mensaje in mensajes %}
+        <li>{{ mensaje.user.username }}: {{ mensaje.texto }}</li>
+      {% endfor %}
+    </ul>
 
-    <div style="margin-top: 10px;"></div>
-
-    <div class="card text-white mb-3" style="max-width: 100rem; border: 2px solid white; margin: 10px; background-color: #25509a;">
-        <h1> Mensajes enviados</h1>
-        <div class="card-body">
-            <div style="margin-top: 10px;"></div>
-            {% for mensaje in mensajes_enviados %}
-                <div class="card text-white bg-primary mb-3" style="border: 2px solid white;">
-                    <div class="card-body">
-                        <li>{{ mensaje.contenido }} - Enviado a: <a href="/profile/{{mensaje.receptor.username}}" style="color: white;">{{mensaje.receptor.username}}</a> </li></li>
-                    </div>
-                </div>
-            {% endfor %}
-        </div>
-    </div>
-
+    <!-- Formulario para enviar mensajes -->
+    <form method="post" action="{% url 'mensajes' username=conversacion.user_dos.username %}">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Enviar mensaje</button>
+    </form>
+  {% else %}
+    <p>No hay conversación disponible.</p>
+  {% endif %}
 {% endblock %}
+

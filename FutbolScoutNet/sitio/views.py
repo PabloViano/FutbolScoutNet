@@ -13,6 +13,8 @@ from django.core.mail import EmailMessage
 from sitio.token import account_activation_token
 from django.views.decorators.http import require_GET
 from haystack.query import SearchQuerySet
+from django.db.models import Q, OuterRef, Subquery
+
 
 def inicio(request):
     return render(request, 'inicio.html', {})
@@ -44,6 +46,55 @@ def registro(request):
         form = UserRegistrationForm()
 
     return render(request,template_name="registro.html",context={"form_registro": form})
+
+@login_required
+def conversaciones(request):
+    # Subconsulta para obtener el último mensaje de cada conversación
+    subquery = Mensaje.objects.filter(conversacion=OuterRef('pk')).order_by('-fecha').values('texto')[:1]
+
+    conversaciones = Conversacion.objects.annotate(
+        ultimo_mensaje=Subquery(subquery)
+    ).filter(
+        Q(user_uno=request.user) | Q(user_dos=request.user)
+    ).exclude(
+        Q(user_uno=request.user, user_dos=request.user)
+    )
+
+    return render(request, 'conversaciones.html', {'conversaciones': conversaciones})
+
+
+@login_required
+def mensajes(request, username):
+    # Intenta obtener la conversación existente o crea una nueva
+    conversacion = Conversacion.objects.filter(
+        Q(user_uno=request.user, user_dos__username=username) |
+        Q(user_dos=request.user, user_uno__username=username)
+    ).first()
+
+    if conversacion is None:
+        # Si la conversación no existe, puedes manejarlo de la manera que prefieras.
+        # Aquí, simplemente estamos creando una conversación de forma predeterminada.
+        conversacion = Conversacion.objects.create(
+            user_uno=request.user,
+            user_dos=get_object_or_404(User, username=username)
+        )
+
+    # Obtén todos los mensajes asociados a la conversación
+    mensajes = Mensaje.objects.filter(conversacion=conversacion)
+
+    # Manejar el envío de nuevos mensajes
+    if request.method == 'POST':
+        form = MensajeForm(request.POST)
+        if form.is_valid():
+            nuevo_mensaje = form.save(commit=False)
+            nuevo_mensaje.user = request.user
+            nuevo_mensaje.conversacion = conversacion
+            nuevo_mensaje.save()
+            return redirect('mensajes', username=username)
+    else:
+        form = MensajeForm()
+
+    return render(request, 'mensajes.html', {'conversacion': conversacion, 'mensajes': mensajes, 'form': form})
 
 @login_required
 def form_post(request):
@@ -210,37 +261,6 @@ def activateEmail(request, user, to_email):
                 received activation link to confirm and complete the registration. <b>Note:</b> Check your spam folder.')
     else:
         messages.error(request, f'Problem sending email to {to_email}, check if you typed it correctly.')
-
-
-@login_required
-def mensajes(request, username=None):
-    current_user = request.user
-
-    if username and username != current_user.username:
-        target_user = get_object_or_404(User, username=username)
-        mensajes_enviados = Mensaje.objects.filter(emisor=current_user, receptor=target_user)
-        mensajes_recibidos = Mensaje.objects.filter(emisor=target_user, receptor=current_user)
-    else:
-        target_user = current_user
-        mensajes_enviados = Mensaje.objects.filter(emisor=current_user)
-        mensajes_recibidos = Mensaje.objects.filter(receptor=current_user)
-
-    return render(request, 'mensajes.html', {'target_user': target_user, 'mensajes_enviados': mensajes_enviados, 'mensajes_recibidos': mensajes_recibidos})
-
-@login_required
-def enviar_mensaje(request, username=None):
-    current_user = get_object_or_404(User, pk=request.user.pk)
-    receptor = get_object_or_404(User, username=username)
-
-    if request.method == "POST":
-        form = MensajeForm(request.POST, emisor=current_user, receptor=receptor)
-        if form.is_valid():
-            form.save()
-            return redirect("/feed")  # Ajusta a tu URL correcta
-    else:
-        form = MensajeForm(emisor=current_user, receptor=receptor)
-
-    return render(request, 'enviar_mensaje.html', {'form': form, 'receptor':receptor})
 
 @login_required
 def form_comment(request, post_id):

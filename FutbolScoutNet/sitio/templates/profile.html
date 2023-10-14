@@ -13,7 +13,7 @@
         {% if user == request.user %}
             <button type="button" class="btn btn-primary" onclick="window.location.href='/profile-edit/{{user}}'">Editar Perfil</button>
         {% else %}
-            <button type="button" class="btn btn-primary" onclick="window.location.href='/enviar-mensaje/{{user}}'">Enviar Mensaje</button>
+            <button type="button" class="btn btn-primary" onclick="window.location.href='/mensajes/{{user}}'">Enviar Mensaje</button>
             {% if user not in request.user.profile_set.get.following %}
               <button type="button" class="btn btn-primary" onclick="window.location.href='/follow/{{user}}'">Follow</button>
             {% else %}

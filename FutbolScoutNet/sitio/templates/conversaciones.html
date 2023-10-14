@@ -1,0 +1,17 @@
+{% extends 'layout.html' %}
+{% block contenido %}
+  <h2>Mis Conversaciones</h2>
+
+  {% if conversaciones %}
+    <ul>
+      {% for conversacion in conversaciones %}
+        <li>
+          <a href="{% url 'mensajes' username=conversacion.user_dos.username %}">{{ conversacion.user_dos.username }}</a>
+          <p>{{ conversacion.ultimo_mensaje }}</p>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No tienes conversaciones.</p>
+  {% endif %}
+{% endblock %}

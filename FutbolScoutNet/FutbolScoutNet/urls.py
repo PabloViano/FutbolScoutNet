@@ -37,7 +37,7 @@ urlpatterns = [
     path('profile-edit/<str:username>/', views.profile_edit),
     path('activate/<uidb64>/<token>', views.activate, name='activate'),
     path('mensajes/<str:username>/', views.mensajes, name='mensajes'),
-    path('enviar-mensaje/<str:username>/', views.enviar_mensaje, name='enviar_mensaje'),
+    path('conversaciones/', views.conversaciones, name='conversaciones'),
     path('add_comment/<int:post_id>/', views.form_comment, name='add_comment'),
     path('search/', include('haystack.urls')),
     path('robots.txt', TemplateView.as_view(template_name="robots.txt", content_type="text/plain")),
