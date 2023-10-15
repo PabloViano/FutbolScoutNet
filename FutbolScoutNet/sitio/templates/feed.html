@@ -81,8 +81,6 @@
                         {% endfor %}
                     {% else %}
                         {% for post in all_posts %}
-                            <!-- Mostrar publicaciones regulares -->
-                            <!-- ... (código de visualización de publicaciones) ... -->
                             <div class="card text-white bg-primary mb-3" style="border: 2px solid white; ">
                                 <div class="card-body">
                                     <div class="user-content">
@@ -108,7 +106,6 @@
                                     </div>
                                     <h4>Comentarios:</h4>
                                     <a href="{% url 'add_comment' post.id %}" class="btn btn-primary" style="background-color: #25509a; margin: 10px;";>Agregar Comentario</a>
-                                    <!-- Bucle para mostrar los comentarios de la publicación actual -->
                                     {% for comment in comments %}
                                         {% if comment.post == post %}
                                         <div class="card text-white bg-secondary mb-3" style="border: 2px solid white; ">
@@ -131,8 +128,6 @@
                     {% endif %}
                     {% if search_posts %}
                         {% for post in search_posts_followed %}
-                            <!-- Mostrar resultados de búsqueda -->
-                            <!-- ... (código de visualización de resultados de búsqueda) ... -->
                             <div class="card text-white bg-primary mb-3" style="border: 2px solid white; ">
                                 <div class="card-body">
                                     <div class="user-content">
@@ -158,7 +153,6 @@
                                     </div>
                                     <h4>Comentarios:</h4>
                                     <a href="{% url 'add_comment' post.id %}" class="btn btn-primary" style="background-color: #25509a; margin: 10px;";>Agregar Comentario</a>
-                                    <!-- Bucle para mostrar los comentarios de la publicación actual -->
                                     {% for comment in comments %}
                                         {% if comment.post == post %}
                                         <div class="card text-white bg-secondary mb-3" style="border: 2px solid white; ">
@@ -174,8 +168,6 @@
                         {% endfor %}
                     {% else %}
                         {% for post in followed_posts %}
-                            <!-- Mostrar publicaciones regulares -->
-                            <!-- ... (código de visualización de publicaciones) ... -->
                             <div class="card text-white bg-primary mb-3" style="border: 2px solid white; ">
                                 <div class="card-body">
                                     <div class="user-content">
@@ -201,7 +193,6 @@
                                     </div>
                                     <h4>Comentarios:</h4>
                                     <a href="{% url 'add_comment' post.id %}" class="btn btn-primary" style="background-color: #25509a; margin: 10px;";>Agregar Comentario</a>
-                                    <!-- Bucle para mostrar los comentarios de la publicación actual -->
                                     {% for comment in comments %}
                                         {% if comment.post == post %}
                                         <div class="card text-white bg-secondary mb-3" style="border: 2px solid white; ">

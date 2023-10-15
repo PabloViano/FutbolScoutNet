@@ -34,4 +34,7 @@ class MensajeForm(forms.ModelForm):
     class Meta:
         model = Mensaje
         fields = ['texto']
+        labels = {
+            'texto': 'Mensaje',
+        }
 

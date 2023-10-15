@@ -1,21 +1,28 @@
 {% extends 'layout.html' %}
 {% block contenido %}
   {% if conversacion %}
-    <h2>Conversación con {{ conversacion.user_uno.username }} y {{ conversacion.user_dos.username }}</h2>
+    <div style="margin-top: 10px;"></div>
+    <div class="card text-white bg-primary mb-3" style="max-width: 100rem; border: 2px solid white;">
+        <div class="card-body" style="display: flex; flex-direction: column; gap: 20px; background-color: #25509a;">
+            <h2>Conversación con {{ conversacion.user_dos.username }}</h2>
 
-    <!-- Lista de mensajes -->
-    <ul>
-      {% for mensaje in mensajes %}
-        <li>{{ mensaje.user.username }}: {{ mensaje.texto }}</li>
-      {% endfor %}
-    </ul>
+            <ul style="list-style: none; padding: 0; margin: 0;">
+                {% for mensaje in mensajes %}
+                    <li style="display: flex; align-items: center;">
+                        <img class="rounded-circle" style="width: 50px; height: 50px; object-fit: cover; border: 2px solid white; margin-right: 10px;" src="{{mensaje.user.profile_set.get.image.url}}">
+                        <span>{{ mensaje.user.username }}: {{ mensaje.texto }}</span>
+                    </li>
+                {% endfor %}
+            </ul>
 
-    <!-- Formulario para enviar mensajes -->
-    <form method="post" action="{% url 'mensajes' username=conversacion.user_dos.username %}">
-      {% csrf_token %}
-      {{ form.as_p }}
-      <button type="submit">Enviar mensaje</button>
-    </form>
+            <form method="post" action="{% url 'mensajes' username=conversacion.user_dos.username %}" style="align-self: flex-end; margin-right: 1100px;">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-primary">Enviar mensaje</button>
+            </form>
+        </div>
+    </div>
+
   {% else %}
     <p>No hay conversación disponible.</p>
   {% endif %}

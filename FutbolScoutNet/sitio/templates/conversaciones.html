@@ -1,16 +1,28 @@
 {% extends 'layout.html' %}
 {% block contenido %}
+  <div style="margin-top: 10px;"></div>
+
   <h2>Mis Conversaciones</h2>
 
+  <div style="margin-top: 10px;"></div>
+
   {% if conversaciones %}
-    <ul>
-      {% for conversacion in conversaciones %}
-        <li>
-          <a href="{% url 'mensajes' username=conversacion.user_dos.username %}">{{ conversacion.user_dos.username }}</a>
-          <p>{{ conversacion.ultimo_mensaje }}</p>
-        </li>
-      {% endfor %}
-    </ul>
+    <div class="card text-white bg-primary mb-3" style="max-width: 100rem; border: 2px solid white;">
+        <div class="card-body" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; background-color: #25509a;">
+            {% for conversacion in conversaciones %}
+                <div class="perfil-card" style="background-color: rgb(69, 130, 236); max-width: 25rem; border-radius: 8px; box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2), -5px -5px 15px rgba(255, 255, 255, 0.1); padding: 15px; display: flex; align-items: center; border: 2px solid white;">
+                    <div class="user-image" style="margin-right: 15px;">
+                        <img class="rounded-circle" style="width: 100px; height: 100px; object-fit: cover; border: 2px solid white;" src="{{conversacion.user_dos.profile_set.get.image.url}}">
+                    </div>
+                    <div style="flex-grow: 1;">
+                        <a href="{% url 'mensajes' username=conversacion.user_dos.username %}" style="color: white; font-size: 20px;">{{ conversacion.user_dos.username }}</a>
+                        <p style="font-size: 18px;">Ultimo mensaje: {{ conversacion.ultimo_mensaje|slice:":20" }}{% if conversacion.ultimo_mensaje|length > 20 %}...{% endif %}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
   {% else %}
     <p>No tienes conversaciones.</p>
   {% endif %}
