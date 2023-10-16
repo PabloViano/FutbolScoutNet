@@ -11,7 +11,6 @@
                 <a href="/publicacion" class="btn btn-primary">Crear Publicación</a>
             </div>
             <div class="col-md-6">
-                <!-- Agregar el formulario de búsqueda -->
                 <form class="form-inline my-2 my-lg-0" method="GET">
                     <div class="input-group">
                         <input class="form-control" type="text" name="search" placeholder="Buscar" value="{{ request.GET.search }}">
@@ -38,13 +37,11 @@
                     {% endif %}
                     {% if search_posts %}
                         {% for post in search_posts %}
-                            <!-- Mostrar resultados de búsqueda -->
-                            <!-- ... (código de visualización de resultados de búsqueda) ... -->
                             <div class="card text-white bg-primary mb-3" style="border: 2px solid white; ">
                                 <div class="card-body">
                                     <div class="user-content">
                                         <div class="user-image">
-                                            <img class="rounded-circle" style="width: 100px; height: 100px; object-fit: cover; border: 2px solid white; float: left; margin-right: 10px;" src="{{post.user.profile_set.get.image.url}}">
+                                            <img class="rounded-circle" style="width: 100px; height: 100px; object-fit: cover; border: 2px solid white; float: left; margin-right: 10px;" src="{{post.user.profile.image.url}}">
                                         </div>
                                         <div class="user-info" style="float: left; margin-top: 30px;">
                                             <h3 class="post-user">Usuario: <a href="/profile/{{post.user}}" style="color: white;">{{post.user}}</a></h3>
@@ -65,7 +62,6 @@
                                     </div>
                                     <h4>Comentarios:</h4>
                                     <a href="{% url 'add_comment' post.id %}" class="btn btn-primary" style="background-color: #25509a; margin: 10px;";>Agregar Comentario</a>
-                                    <!-- Bucle para mostrar los comentarios de la publicación actual -->
                                     {% for comment in comments %}
                                         {% if comment.post == post %}
                                         <div class="card text-white bg-secondary mb-3" style="border: 2px solid white; ">
@@ -85,7 +81,7 @@
                                 <div class="card-body">
                                     <div class="user-content">
                                         <div class="user-image">
-                                            <img class="rounded-circle" style="width: 100px; height: 100px; object-fit: cover; border: 2px solid white; float: left; margin-right: 10px;" src="{{post.user.profile_set.get.image.url}}">
+                                            <img class="rounded-circle" style="width: 100px; height: 100px; object-fit: cover; border: 2px solid white; float: left; margin-right: 10px;" src="{{post.user.profile.image.url}}">
                                         </div>
                                         <div class="user-info" style="float: left; margin-top: 30px;">
                                             <h3 class="post-user">Usuario: <a href="/profile/{{post.user}}" style="color: white;">{{post.user}}</a></h3>
@@ -132,7 +128,7 @@
                                 <div class="card-body">
                                     <div class="user-content">
                                         <div class="user-image">
-                                            <img class="rounded-circle" style="width: 100px; height: 100px; object-fit: cover; border: 2px solid white; float: left; margin-right: 10px;" src="{{post.user.profile_set.get.image.url}}">
+                                            <img class="rounded-circle" style="width: 100px; height: 100px; object-fit: cover; border: 2px solid white; float: left; margin-right: 10px;" src="{{post.user.profile.image.url}}">
                                         </div>
                                         <div class="user-info" style="float: left; margin-top: 30px;">
                                             <h3 class="post-user">Usuario: <a href="/profile/{{post.user}}" style="color: white;">{{post.user}}</a></h3>
@@ -172,7 +168,7 @@
                                 <div class="card-body">
                                     <div class="user-content">
                                         <div class="user-image">
-                                            <img class="rounded-circle" style="width: 100px; height: 100px; object-fit: cover; border: 2px solid white; float: left; margin-right: 10px;" src="{{post.user.profile_set.get.image.url}}">
+                                            <img class="rounded-circle" style="width: 100px; height: 100px; object-fit: cover; border: 2px solid white; float: left; margin-right: 10px;" src="{{post.user.profile.image.url}}">
                                         </div>
                                         <div class="user-info" style="float: left; margin-top: 30px;">
                                             <h3 class="post-user">Usuario: <a href="/profile/{{post.user}}" style="color: white;">{{post.user}}</a></h3>

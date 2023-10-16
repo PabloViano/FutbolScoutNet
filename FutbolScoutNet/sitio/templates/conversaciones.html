@@ -13,7 +13,7 @@
                 <div class="perfil-card" style="background-color: rgb(69, 130, 236); max-width: 25rem; border-radius: 8px; box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2), -5px -5px 15px rgba(255, 255, 255, 0.1); padding: 15px; display: flex; align-items: center; border: 2px solid white;">
                     {% if conversacion.emisor == request.user %}
                         <div class="user-image" style="margin-right: 15px;">
-                            <img class="rounded-circle" style="width: 100px; height: 100px; object-fit: cover; border: 2px solid white;" src="{{conversacion.destinatario.profile_set.get.image.url}}">
+                            <img class="rounded-circle" style="width: 100px; height: 100px; object-fit: cover; border: 2px solid white;" src="{{conversacion.destinatario.profile.image.url}}">
                         </div>
                         <div style="flex-grow: 1;">
                             <a href="{% url 'mensajes' username=conversacion.destinatario.username %}" style="color: white; font-size: 20px;">{{ conversacion.destinatario.username }}</a>
@@ -21,11 +21,11 @@
                         </div>
                     {% else %}
                         <div class="user-image" style="margin-right: 15px;">
-                                <img class="rounded-circle" style="width: 100px; height: 100px; object-fit: cover; border: 2px solid white;" src="{{conversacion.emisor.profile_set.get.image.url}}">
-                            </div>
-                            <div style="flex-grow: 1;">
-                                <a href="{% url 'mensajes' username=conversacion.emisor.username %}" style="color: white; font-size: 20px;">{{ conversacion.emisor.username }}</a>
-                                <p style="font-size: 18px;">Ultimo mensaje: {{ conversacion.ultimo_mensaje|slice:":20" }}{% if conversacion.ultimo_mensaje|length > 20 %}...{% endif %}</p>
+                                <img class="rounded-circle" style="width: 100px; height: 100px; object-fit: cover; border: 2px solid white;" src="{{conversacion.emisor.profile.image.url}}">
+                        </div>
+                        <div style="flex-grow: 1;">
+                            <a href="{% url 'mensajes' username=conversacion.emisor.username %}" style="color: white; font-size: 20px;">{{ conversacion.emisor.username }}</a>
+                            <p style="font-size: 18px;">Ultimo mensaje: {{ conversacion.ultimo_mensaje|slice:":20" }}{% if conversacion.ultimo_mensaje|length > 20 %}...{% endif %}</p>
                         </div>
                     {% endif %}
                 </div>
