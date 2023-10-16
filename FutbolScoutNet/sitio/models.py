@@ -64,7 +64,6 @@ class Post(models.Model):
     fecha = models.DateTimeField(default=timezone.now)
     multimedia = models.ImageField(upload_to="UsersMultimedia", blank=True, null=True)
     video = models.FileField(upload_to="videos", blank=True, null=True)
-    verificado = models.BooleanField(default=False)
 
     def get_comments(self):
         return Comment.objects.filter(post=self)

@@ -18,7 +18,7 @@ class UserRegistrationForm(UserCreationForm):
 class FormPost(forms.ModelForm):
     class Meta:
        model = Post
-       fields = ['titulo', 'texto', 'multimedia','video','verificado']
+       fields = ['titulo', 'texto', 'multimedia','video']
 
 class FormComment(forms.ModelForm):
     class Meta:
