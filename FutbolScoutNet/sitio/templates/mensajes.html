@@ -4,7 +4,12 @@
     <div style="margin-top: 10px;"></div>
     <div class="card text-white bg-primary mb-3" style="max-width: 100rem; border: 2px solid white;">
         <div class="card-body" style="display: flex; flex-direction: column; gap: 20px; background-color: #25509a;">
-            <h2>Conversación con {{ conversacion.user_dos.username }}</h2>
+
+            {% if conversacion.emisor == request.user %}
+                <h2>Conversación con {{ conversacion.destinatario }}</h2>
+            {% else %}
+                <h2> Conversacion con {{ conversacion.emisor }} </h2>
+            {% endif %}
 
             <ul style="list-style: none; padding: 0; margin: 0;">
                 {% for mensaje in mensajes %}
@@ -12,14 +17,24 @@
                         <img class="rounded-circle" style="width: 50px; height: 50px; object-fit: cover; border: 2px solid white; margin-right: 10px;" src="{{mensaje.user.profile_set.get.image.url}}">
                         <span>{{ mensaje.user.username }}: {{ mensaje.texto }}</span>
                     </li>
+                    <div style="margin-top: 4px;"></div>
                 {% endfor %}
             </ul>
 
-            <form method="post" action="{% url 'mensajes' username=conversacion.user_dos.username %}" style="align-self: flex-end; margin-right: 1100px;">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <button type="submit" class="btn btn-primary">Enviar mensaje</button>
-            </form>
+            {% if conversacion.emisor == request.user %}
+                <form method="post" action="{% url 'mensajes' username=conversacion.destinatario.username %}" style="align-self: flex-end; margin-right: 1300px;">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-primary">Enviar mensaje</button>
+                </form>
+            {% else %}
+                <form method="post" action="{% url 'mensajes' username=conversacion.emisor.username %}" style="align-self: flex-end; margin-right: 1300px;">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-primary">Enviar mensaje</button>
+                </form>
+            {% endif %}
+
         </div>
     </div>
 

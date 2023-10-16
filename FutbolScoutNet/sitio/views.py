@@ -55,9 +55,9 @@ def conversaciones(request):
     conversaciones = Conversacion.objects.annotate(
         ultimo_mensaje=Subquery(subquery)
     ).filter(
-        Q(user_uno=request.user) | Q(user_dos=request.user)
+        Q(emisor=request.user) | Q(destinatario=request.user)
     ).exclude(
-        Q(user_uno=request.user, user_dos=request.user)
+        Q(emisor=request.user, destinatario=request.user)
     )
 
     return render(request, 'conversaciones.html', {'conversaciones': conversaciones})
@@ -67,22 +67,19 @@ def conversaciones(request):
 def mensajes(request, username):
     # Intenta obtener la conversación existente o crea una nueva
     conversacion = Conversacion.objects.filter(
-        Q(user_uno=request.user, user_dos__username=username) |
-        Q(user_dos=request.user, user_uno__username=username)
+        Q(emisor=request.user, destinatario__username=username) |
+        Q(destinatario=request.user, emisor__username=username)
     ).first()
 
     if conversacion is None:
-        # Si la conversación no existe, puedes manejarlo de la manera que prefieras.
-        # Aquí, simplemente estamos creando una conversación de forma predeterminada.
         conversacion = Conversacion.objects.create(
-            user_uno=request.user,
-            user_dos=get_object_or_404(User, username=username)
+            emisor=request.user,
+            destinatario=get_object_or_404(User, username=username)
         )
 
-    # Obtén todos los mensajes asociados a la conversación
+    # Obtener todos los mensajes asociados a la conversación
     mensajes = Mensaje.objects.filter(conversacion=conversacion)
 
-    # Manejar el envío de nuevos mensajes
     if request.method == 'POST':
         form = MensajeForm(request.POST)
         if form.is_valid():

@@ -82,8 +82,8 @@ def create_profile(sender, instance, created, **kwargs):
 post_save.connect(create_profile, sender=User)
 
 class Conversacion(models.Model):
-    user_uno = models.ForeignKey(User, on_delete=models.CASCADE, related_name='conversaciones_uno', null=True, blank=True)
-    user_dos = models.ForeignKey(User, on_delete=models.CASCADE, related_name='conversaciones_dos', null=True, blank=True)
+    emisor = models.ForeignKey(User, on_delete=models.CASCADE, related_name='conversaciones_uno', null=True, blank=True)
+    destinatario = models.ForeignKey(User, on_delete=models.CASCADE, related_name='conversaciones_dos', null=True, blank=True)
 
 class Mensaje(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='mensajes', null=True, blank=True)
