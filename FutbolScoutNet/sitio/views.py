@@ -14,7 +14,8 @@ from sitio.token import account_activation_token
 from django.views.decorators.http import require_GET
 from haystack.query import SearchQuerySet
 from django.db.models import Q, OuterRef, Subquery
-
+from django.http import JsonResponse
+from django.core.paginator import Paginator, EmptyPage
 
 def inicio(request):
     return render(request, 'inicio.html', {})
@@ -109,8 +110,10 @@ def form_post(request):
     return render(request, 'post.html', {'form_post': form})
 
 def feed(request):
+    posts_per_page = 10
     if request.user.is_anonymous:
         all_posts = Post.objects.all().order_by('-fecha')
+        paginator = Paginator(all_posts, posts_per_page)
         followed_posts = None
         comments = Comment.objects.filter(post__in=all_posts)
     else:
@@ -119,6 +122,7 @@ def feed(request):
         followed_users = Relationship.objects.filter(from_user=current_user)
         followed_posts = Post.objects.filter(user__in=followed_users.values('to_user')).order_by('-fecha')
         all_posts = Post.objects.all().order_by('-fecha')
+        paginator = Paginator(all_posts, posts_per_page)
 
         # Obtener los comentarios para todas las publicaciones
         comments = Comment.objects.filter(post__in=all_posts)
@@ -139,12 +143,37 @@ def feed(request):
 
     return render(request, 'feed.html', {
         'followed_posts': followed_posts,
-        'all_posts': all_posts,
+        'all_posts': paginator.page(1),
         'search_posts': search_posts,  # Agrega los resultados de búsqueda a la plantilla
         'search_posts_followed': search_posts_followed,
         'comments': comments,
         'search_query': search_query,  # Pasa la consulta de búsqueda a la plantilla
     })
+
+def load_more_posts(request):
+    page = request.GET.get('page')
+    posts_per_page = 10  # Cantidad de publicaciones por página
+
+    all_posts = Post.objects.all().order_by('-fecha')
+
+    paginator = Paginator(all_posts, posts_per_page)
+    try:
+        page_posts = paginator.page(page)
+    except EmptyPage:
+        return JsonResponse()  # Devuelve una respuesta vacía cuando no hay más páginas
+
+    context = {
+        'posts': page_posts,
+    }
+
+    if page == '1':
+        # Si es la primera página, muestra solo los primeros 10 posts
+        context['posts'] = page_posts[0:10]
+
+    return render(request, 'post_partial.html', context)
+
+# Crea una plantilla parcial 'post_partial.html' para renderizar las publicaciones adicionales
+# Esta plantilla debería ser similar a la parte de tu feed.html que muestra una sola publicación
 
 @login_required
 def profile(request, username=None):

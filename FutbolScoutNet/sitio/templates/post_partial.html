@@ -1,0 +1,39 @@
+{% for post in posts %}
+<div class="card text-white bg-primary mb-3" style="border: 2px solid white; margin: 15px;">
+    <div class="card-body">
+        <div class="user-content">
+            <div class="user-image">
+                <img class="rounded-circle" style="width: 100px; height: 100px; object-fit: cover; border: 2px solid white; float: left; margin-right: 10px;" src="{{post.user.profile.image.url}}">
+            </div>
+            <div class="user-info" style="float: left; margin-top: 30px;">
+                <h3 class="post-user">Usuario: <a href="/profile/{{post.user}}" style="color: white;">{{post.user}}</a></h3>
+            </div>
+            <div style="clear: both;"></div>
+        </div>
+        <div style="margin-top: 10px;"></div>
+        <div class="post-content" enctype="multipart/form-data".>
+            <h3 class="post-title">{{ post.titulo }}</h3>
+            <p class="post-date">{{ post.fecha }}</p>
+            <p class="post-text">{{ post.texto }}</p>
+            {% if post.multimedia %}
+            <img class="post-multimedia" src="{{MEDIA_URL}}{{post.multimedia.url}}" width="250" height="250">
+            {% endif %}
+            {% if post.video %}
+            <video class="post-video" src="{{MEDIA_URL}}{{post.video.url}}" width="250" height="250" controls>
+            {% endif %}
+        </div>
+        <h4>Comentarios:</h4>
+        <a href="{% url 'add_comment' post.id %}" class="btn btn-primary" style="background-color: #25509a; margin: 10px;";>Agregar Comentario</a>
+        {% for comment in comments %}
+            {% if comment.post == post %}
+            <div class="card text-white bg-secondary mb-3" style="border: 2px solid white; ">
+                <div class="card-body" style="background-color: #25509a;">
+                    <p class="comment-title"> <b><a href="/profile/{{post.user}}" style="color: #a6a7a8;">{{comment.user}}</a></b> El {{ comment.fecha }} </p>
+                    <p class="comment-text">{{ comment.texto }}</p>
+                </div>
+            </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>
+{% endfor %}

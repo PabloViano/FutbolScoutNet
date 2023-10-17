@@ -42,4 +42,5 @@ urlpatterns = [
     path('search/', include('haystack.urls')),
     path('robots.txt', TemplateView.as_view(template_name="robots.txt", content_type="text/plain")),
     path('rebuild_index/', views.rebuild_index),
+    path('load_more_posts/', views.load_more_posts, name='load_more_posts'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
