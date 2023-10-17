@@ -22,13 +22,13 @@
             </ul>
 
             {% if conversacion.emisor == request.user %}
-                <form method="post" action="{% url 'mensajes' username=conversacion.destinatario.username %}" style="align-self: flex-end; margin-right: 1300px;">
+                <form method="post" action="{% url 'mensajes' username=conversacion.destinatario.username %}" style="align-self: flex-end; margin-right: 1030px;">
                     {% csrf_token %}
                     {{ form.as_p }}
                     <button type="submit" class="btn btn-primary">Enviar mensaje</button>
                 </form>
             {% else %}
-                <form method="post" action="{% url 'mensajes' username=conversacion.emisor.username %}" style="align-self: flex-end; margin-right: 1300px;">
+                <form method="post" action="{% url 'mensajes' username=conversacion.emisor.username %}" style="align-self: flex-end; margin-right: 1030px;">
                     {% csrf_token %}
                     {{ form.as_p }}
                     <button type="submit" class="btn btn-primary">Enviar mensaje</button>
