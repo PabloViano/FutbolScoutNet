@@ -21,15 +21,6 @@ def inicio(request):
     return render(request, 'inicio.html', {})
 
 def registro(request):
-    # if request.method == "POST":
-    #     form = UserRegistrationForm(request.POST)
-    #     if form.is_valid():
-    #         form.save()
-    #         return redirect('/accounts/login')
-    # else:
-    #     form = UserRegistrationForm()
-
-    # return render(request, 'registro.html', {'form_registro': form })
     if request.method == "POST":
         form = UserRegistrationForm(request.POST)
         if form.is_valid():
@@ -154,12 +145,14 @@ def profile(request, username=None):
     if username and username != current_user.username:
         user = User.objects.get(username=username)
         posts = user.posts.all()
+        comments = Comment.objects.filter(post__in=posts)
     else:
         posts = current_user.posts.all()
         user = current_user
+        comments = Comment.objects.filter(post__in=posts)
     profile = Profile.objects.get(user=user)
     followers = Relationship.objects.filter(to_user=User.objects.get(username=username)).count()
-    return render(request, 'profile.html', {'user':user, 'posts':posts, 'profile':profile, 'followers': followers})
+    return render(request, 'profile.html', {'user':user, 'posts':posts, 'profile':profile, 'followers': followers, 'comments': comments})
 
 @login_required
 def profile_edit(request, username=None):
