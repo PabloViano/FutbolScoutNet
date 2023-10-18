@@ -75,9 +75,6 @@
                                 </div>
                             </div>
                         {% endfor %}
-                        <div id="load-more-button">
-                            <button class="btn btn-primary" id="load-more-posts">Cargar más publicaciones</button>
-                        </div>
                     {% else %}
                         {% for post in all_posts %}
                             <div class="card text-white bg-primary mb-3" style="border: 2px solid white; ">
@@ -118,9 +115,6 @@
                                 </div>
                             </div>
                         {% endfor %}
-                        <div id="load-more-button">
-                            <button class="btn btn-primary" id="load-more-posts">Cargar más publicaciones</button>
-                        </div>
                     {% endif %}
                 </div>
                 <div id="seguidos-section" style="display: none;">
@@ -168,9 +162,6 @@
                                 </div>
                             </div>
                         {% endfor %}
-                        <div id="load-more-button">
-                            <button class="btn btn-primary" id="load-more-posts">Cargar más publicaciones</button>
-                        </div>
                     {% else %}
                         {% for post in followed_posts %}
                             <div class="card text-white bg-primary mb-3" style="border: 2px solid white; ">
@@ -211,9 +202,6 @@
                                 </div>
                             </div>
                         {% endfor %}
-                        <div id="load-more-button">
-                            <button class="btn btn-primary" id="load-more-posts">Cargar más publicaciones</button>
-                        </div>
                     {% endif %}
                 </div>
             </div>
@@ -241,42 +229,5 @@
             });
         });
     </script>
-<script>
-    // Definimos variables para el control de scroll infinito
-    const postContainer = document.getElementById('post-container');
-    const loadMoreButton = document.getElementById('load-more-posts');
-    let page = 2;  // Inicia en la segunda página de publicaciones
-
-    // Función para cargar más publicaciones
-    function loadMorePosts() {
-        const xhr = new XMLHttpRequest();
-        xhr.open('GET', `/load_more_posts/?page=${page}`, true);
-        xhr.onload = function() {
-            if (xhr.status === 200) {
-                const newPosts = xhr.responseText;
-                if (newPosts.trim() === '') {
-                    loadMoreButton.innerHTML = 'Has llegado al final';
-                    loadMoreButton.disabled = true;
-                } else {
-                    postContainer.insertAdjacentHTML('beforeend', newPosts);
-                    page += 1;
-                }
-            }
-        };
-        xhr.send();
-    }
-
-    // Evento para cargar más publicaciones al hacer clic en el botón
-    loadMoreButton.addEventListener('click', loadMorePosts);
-
-    // Evento para cargar más publicaciones cuando el usuario llega al final de la página
-    window.addEventListener('scroll', function() 
-    {
-        if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 100) 
-        {
-            loadMorePosts();
-        }
-    });
-</script>
 </body>
 {% endblock %}
