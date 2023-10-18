@@ -2,6 +2,47 @@
 {% load static %}
 {% block contenido %}
 <link href="https://maxcdn.bootstrapcdn.com/bootswatch/4.5.2/litera/bootstrap.min.css" rel="stylesheet" integrity="sha384-B5Fm9Pzr6Cs5fQvq2In6flB5Oj2w5M8c5Gh1Ff5f5Q2PnTk2I6ZdNPhjPZl36spw2" crossorigin="anonymous">
+<head>
+    <!-- Otras etiquetas head -->
+    <script>
+        function updateIndexPeriodically() {
+            // Realiza una solicitud POST a la URL /rebuild_index
+            fetch('/update_index', {
+                method: 'GET',
+                headers: {
+                    'X-CSRFToken': getCookie('csrftoken'), // Asegúrate de incluir el token CSRF si es necesario
+                },
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data); // Maneja la respuesta del servidor, por ejemplo, muestra un mensaje de éxito
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+
+        // Configura la reconstrucción del índice para que se ejecute cada X milisegundos
+        const intervalInMilliseconds = 10000; // 10 segundo
+        setInterval(updateIndexPeriodically, intervalInMilliseconds);
+
+        // Función para obtener el token CSRF de las cookies (si es necesario)
+        function getCookie(name) {
+            var cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                var cookies = document.cookie.split(';');
+                for (var i = 0; i < cookies.length; i++) {
+                    var cookie = cookies[i].trim();
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+    </script>
+</head>
 <body>
     <div style="margin-top: 10px;"></div>
     <div class="container">

@@ -41,5 +41,5 @@ urlpatterns = [
     path('add_comment/<int:post_id>/', views.form_comment, name='add_comment'),
     path('search/', include('haystack.urls')),
     path('robots.txt', TemplateView.as_view(template_name="robots.txt", content_type="text/plain")),
-    path('rebuild_index/', views.rebuild_index),
+    path('update_index/', views.update_index),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

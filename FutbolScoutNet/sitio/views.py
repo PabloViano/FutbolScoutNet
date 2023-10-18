@@ -276,13 +276,16 @@ def form_comment(request, post_id):
 def robots_txt(request):
     return HttpResponse(content_type="text/plain")
 
-def rebuild_index(request):
-    from django.core.management import call_command
-    from django.http import JsonResponse
-    try:
-        call_command("rebuild_index", noinput=False)
-        result = "Index rebuilt"
-    except Exception as err:
-        result = f"Error: {err}"
+from django.http import JsonResponse
 
-    return JsonResponse({"result": result})
+def update_index(request):
+    if request.method == 'GET':
+        from django.core.management import call_command
+        try:
+            call_command("update_index", noinput=False)
+            result = "Index updated"
+        except Exception as err:
+            result = f"Error: {err}"
+        return JsonResponse({"result": result})
+    else:
+        return JsonResponse({"error": "Método no permitido"}, status=405)
