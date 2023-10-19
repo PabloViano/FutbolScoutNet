@@ -158,7 +158,8 @@
                         {% endfor %}
                     {% endif %}
                 </div>
-                <div id="seguidos-section" style="display: none;">
+                {% if user.is_authenticated %}
+                    <div id="seguidos-section" style="display: none;">
                     <div style="margin-top: 10px;"></div>
                     {% if search_query %}
                         <h2>Resultados de búsqueda para "{{ search_query }}"</h2>
@@ -245,9 +246,7 @@
                         {% endfor %}
                     {% endif %}
                 </div>
-            </div>
-            <div id="post-container">
-                <!-- Aquí se insertarán las publicaciones -->
+                {% endif %}
             </div>
         </div>
     </div>

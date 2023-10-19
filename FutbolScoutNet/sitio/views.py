@@ -105,6 +105,7 @@ def feed(request):
         all_posts = Post.objects.all().order_by('-fecha')
         followed_posts = None
         comments = Comment.objects.filter(post__in=all_posts)
+        search_posts_followed = []
     else:
         current_user = request.user
 
