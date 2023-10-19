@@ -278,15 +278,3 @@ def robots_txt(request):
     return HttpResponse(content_type="text/plain")
 
 from django.http import JsonResponse
-
-def update_index(request):
-    if request.method == 'GET':
-        from django.core.management import call_command
-        try:
-            call_command("update_index", noinput=False)
-            result = "Index updated"
-        except Exception as err:
-            result = f"Error: {err}"
-        return JsonResponse({"result": result})
-    else:
-        return JsonResponse({"error": "Método no permitido"}, status=405)
