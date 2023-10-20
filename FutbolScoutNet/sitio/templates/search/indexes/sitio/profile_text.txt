@@ -1,0 +1,4 @@
+{{ object.user.username }}
+{{ object.posicion }}
+{{ object.nivel }}
+{{ object.edad }}

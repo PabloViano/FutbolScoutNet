@@ -174,17 +174,25 @@ def profile_edit(request, username=None):
 
     return render(request, 'profile_edit.html', {'form': form})
 
+from django.db.models import Q  # Importa Q para construir consultas OR
+
 @login_required
 def listado_perfiles(request):
-    perfiles = Profile.objects.filter()
-    niveles = Nivel.objects.all()
-    posiciones = Posicion.objects.all()
+    perfiles = Profile.objects.all()  # Obtén todos los perfiles
 
     # Obtener los parámetros de filtrado de la solicitud GET
     edad_min = request.GET.get('edad_min')
     edad_max = request.GET.get('edad_max')
     nivel = request.GET.get('nivel')
     posicion = request.GET.get('posicion')
+
+    # Verifica si se realizó una búsqueda
+    search_query = request.GET.get('search', '')
+
+    if search_query:
+        # Realiza una búsqueda utilizando Haystack
+        search_results = SearchQuerySet().filter(content=search_query)
+        perfiles = [result.object for result in search_results]
 
     # Aplicar filtros si los parámetros están presentes
     if edad_min:
@@ -196,7 +204,10 @@ def listado_perfiles(request):
     if posicion:
         perfiles = perfiles.filter(posicion__nombre=posicion)
 
-    return render(request, 'listado_perfiles.html', {'lista_perfiles': perfiles, 'user': request.user, 'niveles':niveles, 'posiciones':posiciones})
+    niveles = Nivel.objects.all()
+    posiciones = Posicion.objects.all()
+
+    return render(request, 'listado_perfiles.html', {'lista_perfiles': perfiles, 'user': request.user, 'niveles': niveles, 'posiciones': posiciones})
 
 @login_required
 def follow(request, username):
