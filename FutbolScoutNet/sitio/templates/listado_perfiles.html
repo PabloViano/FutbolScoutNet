@@ -5,17 +5,20 @@
     <div style="margin-top: 10px;"></div>
     <div class="feed-container">
         <div class="content">
-            <div class="col-md-6">
+            <div class="col-md-6 mx-2">
                 <form class="form-inline my-2 my-lg-0" method="GET">
                     <div class="input-group">
                         <input class="form-control" type="text" name="search" placeholder="Buscar" value="{{ request.GET.search }}">
-                        <div class="input-group-append">
+                        <div class="input-group-append col-md-6 mx-2">
                             <button class="btn btn-primary" type="submit">Buscar</button>
                         </div>
                     </div>
                 </form>
             </div>
-            <form method="get" class="filter-container inline-form">
+
+            <div style="margin-top: 10px;"></div>
+
+            <form method="get" class="filter-container inline-form" id="filter-form">
                 <div class="d-flex flex-row">
                     <div class="form-group col-md-2 mx-2">
                         <label for="edad_min">Edad Mínima:</label>
@@ -51,7 +54,9 @@
 
                     <div class="form-group col-md-2 mx-2 align-self-end">
                         <button type="submit" class="btn btn-primary">Aplicar Filtros</button>
+                        <button type="button" class="btn btn-primary" id="clear-filters">Limpiar Pagina</button>
                     </div>
+
 
                 </div>
 
@@ -81,4 +86,14 @@
         </div>
     </div>
 </body>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#clear-filters').on('click', function() {
+            $('#filter-form input, #filter-form select').val('');
+            $('#filter-form').submit();
+        });
+    });
+</script>
 {% endblock %}

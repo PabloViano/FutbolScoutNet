@@ -10,12 +10,13 @@
             <div class="col-md-6">
                 <a href="/publicacion" class="btn btn-primary">Crear Publicación</a>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6 ">
                 <form class="form-inline my-2 my-lg-0" method="GET">
                     <div class="input-group">
                         <input class="form-control" type="text" name="search" placeholder="Buscar" value="{{ request.GET.search }}">
-                        <div class="input-group-append">
+                        <div class="input-group-append mx-2">
                             <button class="btn btn-primary" type="submit">Buscar</button>
+                            <button type="button" class="btn btn-primary" id="clear-filters">Limpiar Búsqueda</button>
                         </div>
                     </div>
                 </form>
@@ -225,6 +226,11 @@
                         seguidosSection.style.display = 'block';
                     }
                 });
+            });
+
+            document.getElementById('clear-filters').addEventListener('click', function () {
+                document.querySelector('input[name="search"]').value = '';
+                document.querySelector('form').submit();
             });
         });
     </script>

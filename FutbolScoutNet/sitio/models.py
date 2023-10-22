@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
+from django.core.validators import MinValueValidator
 import boto3
 
 class Posicion(models.Model):
@@ -21,7 +22,8 @@ class Profile(models.Model):
     image = models.ImageField(upload_to="Profiles_Images", default='user.png')
     posicion = models.ForeignKey(Posicion, on_delete=models.CASCADE, null=True, blank=True)
     nivel = models.ForeignKey(Nivel, on_delete=models.CASCADE, null=True, blank=True)
-    edad = models.IntegerField(null=True, blank=True)
+    edad = models.IntegerField(null=True, blank=True, validators=[MinValueValidator(1)])
+    estado = models.CharField(max_length=50, default='activo')
 
     def __str__(self):
         return f'Perfil de {self.user.username}'
@@ -53,6 +55,7 @@ class Comment(models.Model):
     post = models.ForeignKey('Post', on_delete=models.DO_NOTHING, related_name='comments', null=True, blank=True)
     fecha = models.DateTimeField(default=timezone.now)
     texto = models.CharField(max_length=500)
+    estado = models.CharField(max_length=50, default='publicada')
 
     def __str__(self):
         return f'Comentario del post {self.post} de {self.user.username}'
@@ -64,6 +67,7 @@ class Post(models.Model):
     fecha = models.DateTimeField(default=timezone.now)
     multimedia = models.ImageField(upload_to="UsersMultimedia", blank=True, null=True)
     video = models.FileField(upload_to="videos", blank=True, null=True)
+    estado = models.CharField(max_length=50, default='publicada')
 
     def get_comments(self):
         return Comment.objects.filter(post=self)
