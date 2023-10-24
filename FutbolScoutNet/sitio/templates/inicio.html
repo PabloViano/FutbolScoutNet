@@ -2,28 +2,18 @@
 {% load static %}
 {% block contenido %}
 
-<div style="display: flex; justify-content: center; align-items: center; height: 60vh; background: url(https://cdn.create.vista.com/api/media/small/246024014/stock-video-grand-football-stadium-night-light-moving-cones-seamless-loop-soccer?videoStaticPreview=true&token=) no-repeat center;
-background-size: cover;">
-    <header class="info-header">
-        <h2 class="tittle" style="margin-bottom: 0px; font-size: 36px; color: #4582ec; padding: 0 100px; "> FutbolScoutNet</h2>
-        <P style="margin-bottom: 0px; font-size: 18px; color: aliceblue; padding: 0 100px; margin: 10px">
+<div style="display: flex; flex-direction: column; justify-content: flex-start; align-items: center; height: 100vh; width: 100%; background: url('https://django-futbolscoutnet-files.s3.amazonaws.com/media/inicio_background.jpg') no-repeat center; background-size: cover;">
+    <header class="info-header" style="text-align: center; margin-top: 50px;">
+        <h2 class="tittle" style="margin-bottom: 10px; font-size: 36px; color: #4582ec; padding: 0 100px; margin-top: 100px;">FutbolScoutNet</h2>
+        <p style="margin-top: 10px; font-size: 18px; color: aliceblue; padding: 0 100px; margin-top: 10px;">
             FutbolScoutNet es tu plataforma global para conectar con futbolistas y agentes de fútbol. Crea un perfil detallado, comparte logros, imágenes y videos, y establece conexiones en esta comunidad apasionada. Encuentra oportunidades y mantente actualizado en la industria del fútbol mientras construyes relaciones sólidas en esta red social de crecimiento personal y colaboración.
-        </P>
-        <div style="height: 50px; display: flex; flex-direction: raw; justify-content: center; align-items: center; gap: 10px; margin-top: 20px;">
+        </p>
+        <div style="height: 50px; display: flex; flex-direction: row; justify-content: center; align-items: center; gap: 10px; margin-top: 20px;">
             <button type="button" class="btn btn-primary" onclick="window.location.href='/feed/'">Accede a las últimas publicaciones</button>
             <button type="button" class="btn btn-primary" onclick="window.location.href='/listado-perfiles'">Lista de Perfiles</button>
         </div>
     </header>
 </div>
 
-<div style="display: flex; justify-content: center; align-items: center; height: 60vh;">
-    <section class="content-saw">
-        <div class="contacto">
-            <div class="contacto-info">
-                <h3 class="tittle" style="margin-bottom: 0px; font-size: 50px; color: #4582ec; padding: 0 100px; "> Contacto</h3>
-                <p style="font-size: 26px; color: aliceblue;">Correo: futbolscoutnet@gmail.com </p>
-        </div>
-            
-    </section>
-</div>
+
 {% endblock %}

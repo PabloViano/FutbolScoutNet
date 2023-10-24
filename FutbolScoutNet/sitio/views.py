@@ -102,29 +102,25 @@ def form_post(request):
 
 def feed(request):
     if request.user.is_anonymous:
-        all_posts = Post.objects.all().order_by('-fecha')
+        all_posts = Post.objects.exclude(estado='suspendido').order_by('-fecha')
         followed_posts = None
-        comments = Comment.objects.filter(post__in=all_posts)
+        comments = Comment.objects.filter(post__in=all_posts).exclude(estado='suspendido')
         search_posts_followed = []
     else:
         current_user = request.user
 
         followed_users = Relationship.objects.filter(from_user=current_user)
-        followed_posts = Post.objects.filter(user__in=followed_users.values('to_user')).order_by('-fecha')
-        all_posts = Post.objects.all().order_by('-fecha')
+        followed_posts = Post.objects.filter(user__in=followed_users.values('to_user')).exclude(estado='suspendido').order_by('-fecha')
+        all_posts = Post.objects.exclude(estado='suspendido').order_by('-fecha')
 
-        # Obtener los comentarios para todas las publicaciones
-        comments = Comment.objects.filter(post__in=all_posts)
+        comments = Comment.objects.filter(post__in=all_posts).exclude(estado='suspendido')
 
-    # Verifica si se realizó una búsqueda
     search_query = request.GET.get('search', '')
 
     if search_query:
-        # Realiza una búsqueda utilizando Haystack
         search_results = SearchQuerySet().filter(content=search_query)
-        search_posts = [result.object for result in search_results]
+        search_posts = [result.object for result in search_results if result.object.estado != 'suspendido']
         if not request.user.is_anonymous:
-            # Filtra los resultados de búsqueda para mostrar solo los posts seguidos
             search_posts_followed = [post for post in search_posts if post in followed_posts]
     else:
         search_posts = []
@@ -133,10 +129,10 @@ def feed(request):
     return render(request, 'feed.html', {
         'followed_posts': followed_posts,
         'all_posts': all_posts,
-        'search_posts': search_posts,  # Agrega los resultados de búsqueda a la plantilla
+        'search_posts': search_posts,
         'search_posts_followed': search_posts_followed,
         'comments': comments,
-        'search_query': search_query,  # Pasa la consulta de búsqueda a la plantilla
+        'search_query': search_query,
     })
 
 
@@ -178,19 +174,16 @@ from django.db.models import Q  # Importa Q para construir consultas OR
 
 @login_required
 def listado_perfiles(request):
-    perfiles = Profile.objects.all()  # Obtén todos los perfiles
+    perfiles = Profile.objects.exclude(estado="suspendido")
 
-    # Obtener los parámetros de filtrado de la solicitud GET
     edad_min = request.GET.get('edad_min')
     edad_max = request.GET.get('edad_max')
     nivel = request.GET.get('nivel')
     posicion = request.GET.get('posicion')
 
-    # Verifica si se realizó una búsqueda
     search_query = request.GET.get('search', '')
 
     if search_query:
-        # Realiza una búsqueda utilizando Haystack
         search_results = SearchQuerySet().filter(content=search_query)
         perfiles = [result.object for result in search_results]
 
