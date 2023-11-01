@@ -49,35 +49,4 @@
 <script>
     document.querySelector('button#submitButton').addEventListener('click', function() {document.getElementById('successAlert').style.display = 'block';});
 </script>
-<!-- <fieldset>
-    <div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
-        <div class="card text-white bg-primary mb-1" style="width: 500px; max-height: 700px; border: 2px solid white;">
-            <div class="card-header text-center display-4">Regístrese</div>
-            <div class="container mt-4">
-                <form method="post" class="register-form" style="margin-left: 15px;">
-                    {% csrf_token %}
-                    {{ form_registro.as_p }}
-                    <div class="card-header text-center display-4"></div>
-                    <div class="text-center mt-3">
-                        <button type="submit" class="btn btn-dark" id="submitButton">Submit</button>
-                        <div class="login-link mt-3">
-                            <p>¿Ya tienes una cuenta? <a href="/accounts/login/" style="color: white;">Ingresa aquí</a></p>
-                        </div>
-                    </div>
-                </form>
-            </div>
-
-            <div class="alert alert-dismissible alert-success mt-3" id="successAlert" style="display: none;">
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                <strong>¡Éxito!</strong> Verifica tu mail en la bandeja de entrada y comienza tu carrera!
-            </div>
-
-        </div>
-    </div>
-</fieldset>
-
-<script>
-    document.querySelector('button#submitButton').addEventListener('click', function() {document.getElementById('successAlert').style.display = 'block';});
-</script> -->
-
 {% endblock %}
