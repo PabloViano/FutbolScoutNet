@@ -1,38 +1,52 @@
-{% extends 'base.html' %}
+{% extends 'layout.html'%}
 {% block title %}Registro{% endblock %}
 
 {% block content %}
 {% load static %}
 
-<fieldset>
-    <div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
-        <div class="card text-white bg-primary mb-1" style="width: 500px; max-height: 700px; border: 2px solid white;">
-            <div class="card-header text-center display-4">Regístrese</div>
-            <div class="container mt-4">
+<section class="vh-100 bg-image"
+  style="background-image: url('https://i.pinimg.com/originals/a9/c6/44/a9c644e1d4ceb7a59a8c58c821b26fd4.jpg');">
+  <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+    <div class="container h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+          <div class="card" style="border-radius: 15px;">
+            <div class="card-body p-5">
+                <h2 class="text-uppercase text-center mb-5">Registro</h2>
                 <form method="post" class="register-form" style="margin-left: 15px;">
-                    {% csrf_token %}
-                    {{ form_registro.as_p }}
-                    <div class="card-header text-center display-4"></div>
-                    <div class="text-center mt-3">
-                        <button type="submit" class="btn btn-dark" id="submitButton">Submit</button>
-                        <div class="login-link mt-3">
-                            <p>¿Ya tienes una cuenta? <a href="/accounts/login/" style="color: white;">Ingresa aquí</a></p>
-                        </div>
+
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="form3Example3cg">
+                            {% csrf_token %}
+                            {{ form_registro.as_p }}
+                        </label>
                     </div>
+
+                    <div class="d-flex justify-content-center">
+                    <button type="submit" id="submitButton" style="background-color: #4582ec;"
+                        class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Registrarse</button>
+                    </div>
+            
                 </form>
-            </div>
 
-            <div class="alert alert-dismissible alert-success mt-3" id="successAlert" style="display: none;">
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                <strong>¡Éxito!</strong> Verifica tu mail en la bandeja de entrada y comienza tu carrera!
-            </div>
+                <p class="text-center text-muted mt-5 mb-0">Ya tienes una cuenta? <a href="/accounts/login/"
+                    class="fw-bold text-body"><u>Iniciar Sesion</u></a></p>
 
+                <div class="alert alert-dismissible alert-success mt-3" id="successAlert" style="display: none;">
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    <strong>¡Éxito!</strong> Verifica tu mail en la bandeja de entrada y comienza tu carrera!
+                </div>
+
+
+            </div>
+          </div>
         </div>
+      </div>
     </div>
-</fieldset>
+  </div>
+</section>
 
 <script>
     document.querySelector('button#submitButton').addEventListener('click', function() {document.getElementById('successAlert').style.display = 'block';});
 </script>
-
 {% endblock %}
