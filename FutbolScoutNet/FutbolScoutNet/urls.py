@@ -34,6 +34,8 @@ urlpatterns = [
     path('listado-perfiles/', views.listado_perfiles),
     path('follow/<str:username>/', views.follow, name="follow"),
     path('unfollow/<str:username>/', views.unfollow, name="unfollow"),
+    path('seguidores/<str:username>', views.seguidores, name="seguidores"),
+    path('seguidos/<str:username>', views.seguidos, name="seguidos"),
     path('profile-edit/<str:username>/', views.profile_edit),
     path('activate/<uidb64>/<token>', views.activate, name='activate'),
     path('mensajes/<str:username>/', views.mensajes, name='mensajes'),

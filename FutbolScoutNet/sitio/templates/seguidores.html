@@ -1,0 +1,17 @@
+{% extends 'layout.html' %}
+{% block contenido %}
+    <div style="margin-top: 10px;"></div>
+{% if seguidores %}
+  <h2 style="margin-left: 1.5%;">Seguidores de {{ user.username }}</h2>
+  <ul>
+    {% for seguidor in seguidores %}
+        <div class="perfil-card" style="background-color: rgb(69, 130, 236); max-width: 25rem; border-radius: 8px; box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2), -5px -5px 15px rgba(255, 255, 255, 0.1); padding: 15px; display: flex; align-items: center; border: 2px solid white; margin-bottom: 10px;">
+            <img class="rounded-circle" style="width: 50px; height: 50px; object-fit: cover; border: 2px solid white; margin-right: 10px;" src="{{seguidor.profile.image.url}}">
+            <h3><a href="{% url 'profile' seguidor.username %}" style="color: white;">{{seguidor.username}}</a></h3>
+        </div>
+    {% endfor %}
+  </ul>
+{% else %}
+    <h2 style="margin-left: 1%;">No tiene seguidores</h2>
+{% endif %}
+{% endblock %}

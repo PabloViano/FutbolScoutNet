@@ -72,12 +72,12 @@
                             <div class="user-image">
                                 <img class="rounded-circle" style="width: 100px; height: 100px; object-fit: cover; border: 2px solid white;" src="{{perfil.image.url}}">
                             </div>
-                            <div class="datos-perfil">
-                                <h3 class="perfil-user" style="font-size: 20px;">Usuario: <a href="/profile/{{perfil.user}}" style="color: white;">{{perfil.user}}</a></h3>
-                                <h3 class="perfil-user" style="font-size: 20px;">Posicion: {{perfil.posicion}}</h3>
-                                <h3 class="perfil-user" style="font-size: 20px;">Nivel: {{perfil.nivel}}</h3>
-                                <h3 class="perfil-user" style="font-size: 20px;">Edad: {{perfil.edad}}</h3>
-                            </div>
+                           <div class="datos-perfil">
+                                <h3 class="perfil-user" style="font-size: 20px;">Usuario: <a href="/profile/{{perfil.user}}" style="color: white;">{{perfil.user|default:"Sin datos"}}</a></h3>
+                                <h3 class="perfil-user" style="font-size: 20px;">Posicion: {{perfil.posicion|default:"Sin datos"}}</h3>
+                                <h3 class="perfil-user" style="font-size: 20px;">Nivel: {{perfil.nivel|default:"Sin datos"}}</h3>
+                                <h3 class="perfil-user" style="font-size: 20px;">Edad: {{perfil.edad|default:"Sin datos"}}</h3>
+                           </div>
                         </div>
                     </div>
                     {% endfor %}

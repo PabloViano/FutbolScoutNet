@@ -230,6 +230,22 @@ def unfollow(request, username):
         rel.delete()
     return redirect('profile', username=to_user.username)
 
+@login_required
+def seguidores(request, username):
+    to_user = get_object_or_404(User, username=username)
+    relaciones_seguidores = Relationship.objects.filter(to_user=to_user)
+    seguidores = [relacion.from_user for relacion in relaciones_seguidores]
+
+    return render(request, 'seguidores.html', {'user': to_user, 'seguidores': seguidores})
+
+@login_required
+def seguidos(request, username):
+    to_user = get_object_or_404(User, username=username)
+    seguidos = Relationship.objects.filter(from_user=to_user)
+
+    return render(request, 'seguidos.html', {'user': to_user, 'seguidos': seguidos})
+
+
 #EMIAL CONFIRMATION
 
 def activate(request, uidb64, token):

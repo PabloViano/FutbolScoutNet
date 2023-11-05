@@ -22,6 +22,8 @@
               <button type="button" class="btn btn-primary" onclick="window.location.href='/unfollow/{{user}}'">Unfollow</button>
             {% endif%}
         {% endif%}
+        <button type="button" class="btn btn-primary" onclick="window.location.href='/seguidos/{{profile.user}}'">Seguidos</button>
+        <button type="button" class="btn btn-primary" onclick="window.location.href='/seguidores/{{profile.user}}'">Seguidores</button>
     </div>
 </div>
 
@@ -29,9 +31,9 @@
   <div class="card-header" style="background-color: #25509a;">Datos</div>
   <div class="card-body" style="background-color: #25509a;">
     <h4 class="followers">Seguidores: {{followers}}</h4>
-    <h4 class="card-title">Posicion: {{profile.posicion}}</h4>
-    <h4 class="card-title">Nivel: {{profile.nivel}}</h4>
-    <h4 class="card-title">Edad: {{profile.edad}}</h4>
+    <h4 class="card-title">Posicion: {{profile.posicion|default:"Sin datos"}}</h4>
+    <h4 class="card-title">Nivel: {{profile.nivel|default:"Sin datos"}}</h4>
+    <h4 class="card-title">Edad: {{profile.edad|default:"Sin datos"}}</h4>
   </div>
 </div>
 <div class="card text-white bg-primary mb-3" style="max-width: 200rem; border: 2px solid white; margin: 10px;">
