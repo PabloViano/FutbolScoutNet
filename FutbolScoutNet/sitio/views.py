@@ -143,13 +143,21 @@ def profile(request, username=None):
         user = User.objects.get(username=username)
         posts = user.posts.all()
         comments = Comment.objects.filter(post__in=posts)
+        if user.profile.permitir_mensajes_de_desconocidos == False:
+            if Relationship.objects.filter(from_user=user, to_user=current_user).exists():
+                permitir_mensajes = True
+            else:
+                permitir_mensajes = False
+        else:
+            permitir_mensajes = True
     else:
         posts = current_user.posts.all()
         user = current_user
         comments = Comment.objects.filter(post__in=posts)
+        permitir_mensajes = True
     profile = Profile.objects.get(user=user)
     followers = Relationship.objects.filter(to_user=User.objects.get(username=username)).count()
-    return render(request, 'profile.html', {'user':user, 'posts':posts, 'profile':profile, 'followers': followers, 'comments': comments})
+    return render(request, 'profile.html', {'user':user, 'posts':posts, 'profile':profile, 'followers': followers, 'comments': comments, 'permitir_mensajes': permitir_mensajes})
 
 @login_required
 def profile_edit(request, username=None):

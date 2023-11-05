@@ -24,7 +24,8 @@ class Profile(models.Model):
     nivel = models.ForeignKey(Nivel, on_delete=models.CASCADE, null=True, blank=True)
     edad = models.IntegerField(null=True, blank=True, validators=[MinValueValidator(1)])
     estado = models.CharField(max_length=50, default='activo')
-
+    permitir_mensajes_de_desconocidos = models.BooleanField(default=True)
+    
     def __str__(self):
         return f'Perfil de {self.user.username}'
 

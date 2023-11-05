@@ -28,7 +28,7 @@ class FormComment(forms.ModelForm):
 class ProfileEditForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ['image', 'posicion', 'nivel', 'edad']
+        fields = ['image', 'posicion', 'nivel', 'edad', 'permitir_mensajes_de_desconocidos']
 
 class MensajeForm(forms.ModelForm):
     class Meta:
