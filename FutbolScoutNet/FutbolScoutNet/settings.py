@@ -187,3 +187,19 @@ HAYSTACK_CONNECTIONS = {
         'PATH': BASE_DIR / 'whoosh_index',
     },
 }
+
+DOCKER = os.getenv('DOCKER')
+if not DOCKER:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / '..' / '..' / 'data' / 'db.sqlite3',
+        }
+    }
