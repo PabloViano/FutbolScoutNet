@@ -161,6 +161,22 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = "home"
 LOGOUT_REDIRECT_URL = "home"
 
+DOCKER = os.getenv('DOCKER')
+if not DOCKER:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / '..' / '..' / 'data' / 'db.sqlite3',
+        }
+    }
+
 if 'RENDER' in os.environ:
     print("USING RENDER.COM SETTINGS!")
     DEBUG = False
@@ -187,19 +203,3 @@ HAYSTACK_CONNECTIONS = {
         'PATH': BASE_DIR / 'whoosh_index',
     },
 }
-
-DOCKER = os.getenv('DOCKER')
-if not DOCKER:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
-    }
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / '..' / '..' / 'data' / 'db.sqlite3',
-        }
-    }
